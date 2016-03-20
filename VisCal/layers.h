@@ -40,7 +40,10 @@ public:
 
 /*trainData : train할 input들과 알고있는 결과를 저장해둔다.*/
 struct trainData{
+public:
 	int numOfData;
-	[]channelLayer2 input;
-	mat1 expectedResult[];
+	vector<channelLayer2> input;
+	vector<layer1> expectedResult;
+
+	trainData(unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny, unsigned int outputSize);
 };

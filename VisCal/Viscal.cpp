@@ -1,8 +1,12 @@
 #include <iostream>
-#include "matrix.h"
+#include "population.h"
+#include "visCal_File_IO.h"
 #include <thread>
 
 using namespace std;
+
+//data 영역에 메모리 할당
+population popul;
 
 int drive1(unsigned int threadNum){ return 0; }
 
@@ -26,6 +30,10 @@ int testDrive(){
 	int a;
 	cin >> a;
 	return a;
+}
+
+int fileIOTest(){
+	txtIn("TrainingList.txt", 99, 32, 32, 1);
 }
 
 int main(){

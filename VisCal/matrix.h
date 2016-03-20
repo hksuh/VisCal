@@ -1,6 +1,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 
@@ -57,6 +58,7 @@ public:
 	void copy();
 	string toStr();
 	void show();
+
 };
 
 class mat3{};
