@@ -40,11 +40,14 @@ int testDrive(){
 }
 
 
+using namespace std;
+
 int main(){
-    srand((unsigned int)time(nullptr));
+        srand((unsigned int)time(nullptr));
 	int a;
 	cout << "HEloow Wolrd;";
 	cin >> a;
 	cout << "you t" << endl;
+
 	return testDrive();
 }
