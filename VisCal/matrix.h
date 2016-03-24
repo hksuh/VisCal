@@ -81,6 +81,20 @@ public:
     void random();
     void print();
 };
+
+class mat4 {
+public:
+    T**** elem;
+    unsigned int size_k, size_l, size_m, size_n;
+    unsigned int size;
+    
+    mat4(const unsigned int, const unsigned int, const unsigned int, const unsigned int);
+    ~mat4();
+    
+    void add(const mat4&, const mat4&);
+    void random();
+    void print();
+};
 /*
 	mat1():vector<T>(){}
 	mat1(size_t _n,T _init):vector<T>(_n,_init){}

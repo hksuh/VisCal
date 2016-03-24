@@ -174,3 +174,95 @@ void mat3::print() {
         printf("%f]\n", elem[h][size_m - 1][size_n - 1]);
     }
 }
+
+mat4::mat4(const unsigned int k, const unsigned int l, const unsigned int m, const unsigned int n) {
+    int h, i, j;
+    
+    size = k*l*m*n;
+    size_k = k;
+    size_l = l;
+    size_m = m;
+    size_n = n;
+    
+    elem = new T***[size_k];
+    for(h = 0; h < size_k; h++) {
+        elem[h] = new T**[size_l];
+        for(i = 0; i < size_l; i++){
+            elem[h][i] = new T*[size_m];
+            for(j=0; j < size_m; j++) {
+                elem[h][i][j] = new T[size_n];
+            }
+        }
+    }
+}
+
+mat4::~mat4() {
+    int h, i, j;
+    
+    for(h = 0; h < size_k; h++) {
+        for(i = 0; i < size_l; i++){
+            for(j=0; j < size_m; j++) {
+                delete[] elem[h][i][j];
+            }
+            delete[] elem[h][i];
+        }
+        delete[] elem[h];
+    }
+    delete[] elem;
+}
+
+void mat4::add(const mat4& a, const mat4& b){
+    int g, h, i, j;
+    
+    for(g = 0; g < size_k; g++) {
+        for(h = 0; h < size_l; h++) {
+            for(i = 0; i < size_m; i++)
+            {
+                for(j = 0; j < size_n; j++)
+                {
+                    elem[g][h][i][j] = a.elem[g][h][i][j] + b.elem[g][h][i][j];
+                }
+            }
+        }
+    }
+    
+}
+
+void mat4::random() {
+    int g, h, i, j;
+    
+    for(g = 0; g < size_k; g++) {
+        for(h = 0; h < size_l; h++) {
+            for(i = 0; i < size_m; i++)
+            {
+                for(j = 0; j < size_n; j++)
+                {
+                    elem[g][h][i][j] = rand()%100000000/100000000.0;
+                }
+            }
+        }
+    }
+}
+
+void mat4::print() {
+    int g, h, i, j;
+    
+    for(g = 0; g < size_k; g++)
+    {
+        for(h = 0; h < size_l; h++)
+        {
+            printf("[");
+            for(i = 0; i < size_m - 1; i++) {
+                for(j = 0; j <size_n; j++)
+                    printf("%f, ", elem[g][h][i][j]);
+                    printf("\n");
+            }
+            for(j = 0; j <size_n - 1; j++)
+                printf("%f, ", elem[g][h][i][j]);
+        
+            printf("%f]\n", elem[g][h][size_m - 1][size_n - 1]);
+            printf("-----------------------------------\n");
+        }
+        printf("==================================\n");
+    }
+}

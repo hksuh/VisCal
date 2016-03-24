@@ -22,19 +22,24 @@ int multiThread(){
 int testDrive(){
  
     mat1 a(4);
-
     mat2 b(4,5);
-
     mat3 c(4,5,7);
+    mat4 d(6, 3, 12, 3);
     a.random();
     cout <<"mat1";
     a.print();
+    
     b.random();
     cout <<"mat2";
     b.print();
+    
     c.random();
     cout <<"mat3";
     c.print();
+    
+    d.random();
+    cout <<"mat4";
+    d.print();
     
     return 0;
 }
