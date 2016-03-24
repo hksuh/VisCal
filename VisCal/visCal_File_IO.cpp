@@ -76,5 +76,4 @@ int readL1(ifstream& _file, layer1& _target){
 	_file >> var; if (((int)(var + .5)) != -3){ return -3; };
 	return 0;
 };
-
 */

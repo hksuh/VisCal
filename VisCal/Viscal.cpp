@@ -29,8 +29,7 @@ int fileIOTest(){
 }
 
 int matrix_testDrive(){
-	
-  //  mat1 a(4);
+	mat1 a(4);
 
     mat2 b(4,5);
 
@@ -40,18 +39,21 @@ int matrix_testDrive(){
 //    a.print();
 //    b.random();
     cout <<"mat2";
+    cout << "mat2[0][0]" << b.elem[0][0] << endl;
+    cout << "mat2[0][0]" << b[0][0] << endl;
+
     b.print();
 //    c.random();
 //    cout <<"mat3";
 //    c.print();
-
+	double alter;
+	cin >> alter;
     return 0;
 }
 
 
 int main(){
     srand((unsigned int)time(nullptr));
-
-	//return multiThread();
-	return matrix_testDrive();
+    //return multiThread();
+    return matrix_testDrive();
 }
