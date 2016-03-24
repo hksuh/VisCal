@@ -40,6 +40,7 @@ class mat{
     unsigned int* size;
     
     /* common method */
+  //  void set(int*, T);
     void random();
     void mutate(T);
 };

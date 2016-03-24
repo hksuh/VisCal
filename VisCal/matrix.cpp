@@ -20,6 +20,18 @@ template <typename U>
 mat<U>::~mat() {
 	delete[] size;
 }
+/*
+template <typename U>
+
+mat<U>::set(int* index, T value) {
+    if(dim == 0) {
+        elem[index[0]] = value;
+    }
+    if(dim == 1) {
+        elem[index[0]]
+    }
+}
+ */
 
 template <typename U>
 void mat<U>::random(){
@@ -121,7 +133,6 @@ mat3::mat3(const unsigned int n, const unsigned int m, const unsigned int l) {
 }
 
 mat3::~mat3() {
-	cout << "¼Ò¸êÀÚ3 È£Ãâ" << endl;
 	unsigned int i, j;
 
 	for (i = 0; i < size_n; i++) {
@@ -131,7 +142,6 @@ mat3::~mat3() {
 		delete elem[i];
 	}
 	delete[] elem;
-	cout << "¼Ò¸êÀÚ4 È£Ãâ" << endl;
 }
 
 void mat3::add(const mat3& a, const mat3& b){

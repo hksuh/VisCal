@@ -38,9 +38,9 @@ int matrix_testDrive(){
 //    a.random();
 //    cout <<"mat1";
 //    a.print();
-    b.random();
+//    b.random();
     cout <<"mat2";
-//    b.print();
+    b.print();
 //    c.random();
 //    cout <<"mat3";
 //    c.print();
@@ -51,50 +51,7 @@ int matrix_testDrive(){
 
 int main(){
     srand((unsigned int)time(nullptr));
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
-	cout << (((double)rand() / (double)RAND_MAX)) << endl;
+
 	//return multiThread();
 	return matrix_testDrive();
 }
