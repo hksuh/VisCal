@@ -1,11 +1,12 @@
 #include <iostream>
-#include "population.h"
-#include "visCal_File_IO.h"
+//#include "population.h"
+//#include "visCal_File_IO.h"
+#include "matrix.h"
 #include <thread>
 
 using namespace std;
 
-population popul;
+//population popul;
 
 int drive1(unsigned int threadNum){ return 0; }
 
@@ -23,11 +24,12 @@ int multiThread(){
 }
 
 int fileIOTest(){
-	txtIn("TrainingList.txt", 99, 32, 32, 1);
+//	txtIn("TrainingList.txt", 99, 32, 32, 1);
+	return 0;
 }
 
-int testDrive(){
-
+int matrix_testDrive(){
+	
     mat1 a(4);
 
     mat2 b(4,5);
@@ -42,7 +44,7 @@ int testDrive(){
     c.random();
     cout <<"mat3";
     c.print();
-    
+
     return 0;
 }
 
@@ -50,5 +52,5 @@ int testDrive(){
 int main(){
     srand((unsigned int)time(nullptr));
 	//return multiThread();
-	return testDrive();
+	return matrix_testDrive();
 }

@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-
+#pragma once
 using namespace std;
 
 // vector 자료형 상속을 이용하여 다차원 행렬과 그에 필요한 연산구현
@@ -29,26 +29,30 @@ typedef double T;
  * 
  *
  */
+template <typename U> 
 class mat{
   public:
-    virtual ~mat() = 0;
-    T* elem;
-    unsigned int size;
+	mat(const unsigned int);
+	~mat();
+    U elem;
+	const size_t dim;
+    unsigned int* size;
     
     /* common method */
-    void add(const mat&, const mat&);
+	template <FuncType>
+	void scan(FuncType);
+	void add(const mat&, const mat&);
     void random();
+	void set(const unsigned int*,T);
     
     /* abstract method */
     virtual void print() = 0;
 };
 
-class mat1 {
+class mat1 : public mat<T*>{
   public:
-    T* elem;
-    unsigned int size;
     
-    mat1(const unsigned int);
+	mat1(const unsigned int);
     ~mat1();
     
     void add(const mat1&, const mat1&);
@@ -59,7 +63,7 @@ class mat1 {
 class mat2 {
   public:
     T** elem;
-    unsigned int size_m, size_n;
+    unsigned int size_n, size_m;
     unsigned int size;
     
     mat2(const unsigned int, const unsigned int);
@@ -73,7 +77,7 @@ class mat2 {
 class mat3 {
 public:
     T*** elem;
-    unsigned int size_l, size_m, size_n;
+    unsigned int size_n, size_m, size_l;
     unsigned int size;
     
     mat3(const unsigned int, const unsigned int, const unsigned int);

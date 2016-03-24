@@ -1,5 +1,5 @@
 #include "visCal_File_IO.h"
-
+/*
 trainData txtIn(char* name, unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny,unsigned int outputSize){
 	trainData testImg = trainData(numOfInput,input_lenx,input_leny,outputSize);
 	cout << "Read file <" << name << ">" << endl;
@@ -76,3 +76,5 @@ int readL1(ifstream& _file, layer1& _target){
 	_file >> var; if (((int)(var + .5)) != -3){ return -3; };
 	return 0;
 };
+
+*/
