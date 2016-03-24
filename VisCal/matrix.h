@@ -39,37 +39,23 @@ class mat{
     unsigned int* size;
     
     /* common method */
-	template <FuncType>
-	void scan(FuncType);
-	void add(const mat&, const mat&);
     void random();
-	void set(const unsigned int*,T);
-    
-    /* abstract method */
-    virtual void print() = 0;
+    void mutate(T);
 };
 
 class mat1 : public mat<T*>{
   public:
-    
 	mat1(const unsigned int);
     ~mat1();
-    
-    void add(const mat1&, const mat1&);
-    void random();
+
     void print();
 };
 
-class mat2 {
+class mat2 : public mat<T**>{
   public:
-    T** elem;
-    unsigned int size_n, size_m;
-    unsigned int size;
-    
     mat2(const unsigned int, const unsigned int);
     ~mat2();
-    
-    void add(const mat2&, const mat2&);
+
     void random();
     void print();
 };

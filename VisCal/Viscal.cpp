@@ -30,20 +30,20 @@ int fileIOTest(){
 
 int matrix_testDrive(){
 	
-    mat1 a(4);
+  //  mat1 a(4);
 
     mat2 b(4,5);
 
-    mat3 c(4,5,7);
-    a.random();
-    cout <<"mat1";
-    a.print();
+//    mat3 c(4,5,7);
+//    a.random();
+//    cout <<"mat1";
+//    a.print();
     b.random();
     cout <<"mat2";
-    b.print();
-    c.random();
-    cout <<"mat3";
-    c.print();
+//    b.print();
+//    c.random();
+//    cout <<"mat3";
+//    c.print();
 
     return 0;
 }
