@@ -29,21 +29,20 @@ typedef double T;
  * 
  *
  */
+
 template <typename U> 
 class mat{
   public:
 	mat(const unsigned int);
 	~mat();
     U elem;
-	const size_t dim;
+	const int dim;
     unsigned int* size;
     
     /* common method */
-	template <FuncType>
-	void scan(FuncType);
-	void add(const mat&, const mat&);
+	//void add(const mat&, const mat&);
     void random();
-	void set(const unsigned int*,T);
+	//void set(const unsigned int*,T);
     
     /* abstract method */
     virtual void print() = 0;
@@ -60,7 +59,7 @@ class mat1 : public mat<T*>{
     void print();
 };
 
-class mat2 {
+class mat2 : public mat<T**> {
   public:
     T** elem;
     unsigned int size_n, size_m;
