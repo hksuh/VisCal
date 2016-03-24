@@ -23,7 +23,7 @@ mat<U>::~mat() {
 
 template <typename U>
 void mat<U>::random(){
-	unsigned int i[dim];
+	int* i=new int[dim];
 	int j = 0;
 	for (j = 0; j < dim; j++){ i[j] = 0; }
 	while (j >= 0)
@@ -38,21 +38,22 @@ void mat<U>::random(){
 			i[j]++;
 		}
 	}
+	delete[] i;
 }
 
 
-mat1::mat1(const unsigned int n) :mat<T*>(1){
+mat1::mat1(const unsigned int n) :mat<T>(1){
 	size[0] = n;
 	elem = new T[n];                 // malloc(n*sizeof(T))
 }
 
 mat1::~mat1(){
-	mat<T*>::~mat();
+	mat<T>::~mat();
 	delete[] elem;
 }
 
 void mat1::random(){
-	mat<T*>::random();
+	mat<T>::random();
 }
 
 void mat1::print() {
@@ -64,7 +65,7 @@ void mat1::print() {
 	printf("%f]\n", elem[ size[0]-1]);
 }
 
-mat2::mat2(const unsigned int n0, const unsigned int n1):mat<T**>(2){
+mat2::mat2(const unsigned int n0, const unsigned int n1):mat<T*>(2){
     unsigned int i;
     size[0] = n0;
     size[1] = n1;
@@ -86,7 +87,7 @@ mat2::~mat2() {
 }
 
 void mat2::random() {
-    mat<T**>::random();
+    mat<T*>::random();
 }
 
 void mat2::print() {

@@ -35,25 +35,31 @@ class mat{
   public:
 	mat(const unsigned int);
 	~mat();
-    U elem;
+    U * elem;
 	int dim;
     unsigned int* size;
     
     /* common method */
     void random();
     void mutate(T);
+
+	U& operator[](int index){
+		return elem[index];
+	}
+
 };
 
-class mat1 : public mat<T*>{
+class mat1 : public mat<T>{
   public:
 	mat1(const unsigned int);
     ~mat1();
     
     void random();
     void print();
+
 };
 
-class mat2 : public mat<T**> {
+class mat2 : public mat<T*> {
   public:
     mat2(const unsigned int, const unsigned int);
     ~mat2();
