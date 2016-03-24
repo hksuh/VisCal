@@ -5,7 +5,6 @@
 
 using namespace std;
 
-//data 영역에 메모리 할당
 population popul;
 
 int drive1(unsigned int threadNum){ return 0; }
@@ -23,24 +22,33 @@ int multiThread(){
 	return 0;
 }
 
-int testDrive(){
-	mat1 v=mat1(2,0.);
-	cout << v[1] << endl;
-
-	int a;
-	cin >> a;
-	return a;
-}
-
 int fileIOTest(){
 	txtIn("TrainingList.txt", 99, 32, 32, 1);
 }
 
+int testDrive(){
+
+    mat1 a(4);
+
+    mat2 b(4,5);
+
+    mat3 c(4,5,7);
+    a.random();
+    cout <<"mat1";
+    a.print();
+    b.random();
+    cout <<"mat2";
+    b.print();
+    c.random();
+    cout <<"mat3";
+    c.print();
+    
+    return 0;
+}
+
+
 int main(){
-	int a;
-	cout << "HEloow Wolrd;";
-	cin >> a;
-	cout << "you t" << endl;
+    srand((unsigned int)time(nullptr));
 	//return multiThread();
 	return testDrive();
 }

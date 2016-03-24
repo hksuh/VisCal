@@ -24,45 +24,68 @@ typedef double T;
 /* toStr : 원소정보들을 string으로 변환한다. file I/O와 show 함수에 사용된다.*/
 /* show : toStr을 이용하여 객체의 변수정보들을 출력한다*/
 
-class mat1 : public vector<T>{
-public:
-	mat1():vector<T>(){}
-	mat1(size_t _n,T _init):vector<T>(_n,_init){}
 
-	void add(const mat1& _a, const mat1& _b){}
-
-	/* flatten : 2차원이상의 행렬의 원소들을 일렬로 펼쳐서 1차원행렬(column vector)로 만든다.*/
-	void flatten();
-	
-	void add();
-	void copy();
-	void rand();
-	string toStr();
-	void show();
+/* Abstract Class for matrix 
+ * 
+ *
+ */
+class mat{
+  public:
+    virtual ~mat() = 0;
+    T* elem;
+    unsigned int size;
+    
+    /* common method */
+    void add(const mat&, const mat&);
+    void random();
+    
+    /* abstract method */
+    virtual void print() = 0;
 };
 
-void mat1::show(){/*이런식으로 cpp파일에 함수 내용물 구현*/};
-
-class mat2 : public vector<mat1>{
-public:
-	mat2() :vector<mat1>(){}
-	mat2(size_t _n, mat1 _init) :vector<mat1>(_n, _init){}
-
-	/*thsd를 이용하여 각각의 원소값에 sigmoid함수를 취하여 0~1사이 실수로 만든다.*/
-	void sigmoid(const mat2& _thsd);
-
-	/*input 열벡터에 현재행렬을 곱한 결과를 target 열벡터에 저장한다.*/
-	void product(const mat1& _input, mat1& _target);
-	
-	void add();
-	void copy();
-	string toStr();
-	void show();
-
+class mat1 {
+  public:
+    T* elem;
+    unsigned int size;
+    
+    mat1(const unsigned int);
+    ~mat1();
+    
+    void add(const mat1&, const mat1&);
+    void random();
+    void print();
 };
 
-class mat3{};
+class mat2 {
+  public:
+    T** elem;
+    unsigned int size_m, size_n;
+    unsigned int size;
+    
+    mat2(const unsigned int, const unsigned int);
+    ~mat2();
+    
+    void add(const mat2&, const mat2&);
+    void random();
+    void print();
+};
 
+class mat3 {
+public:
+    T*** elem;
+    unsigned int size_l, size_m, size_n;
+    unsigned int size;
+    
+    mat3(const unsigned int, const unsigned int, const unsigned int);
+    ~mat3();
+    
+    void add(const mat3&, const mat3&);
+    void random();
+    void print();
+};
+
+/*
 class mat4{};
 
 class mat5{};
+*/
