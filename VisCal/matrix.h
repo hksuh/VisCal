@@ -29,13 +29,14 @@ typedef double T;
  * 
  *
  */
+
 template <typename U> 
 class mat{
   public:
 	mat(const unsigned int);
 	~mat();
     U elem;
-	const size_t dim;
+	int dim;
     unsigned int* size;
     
     /* common method */
@@ -47,11 +48,12 @@ class mat1 : public mat<T*>{
   public:
 	mat1(const unsigned int);
     ~mat1();
-
+    
+    void random();
     void print();
 };
 
-class mat2 : public mat<T**>{
+class mat2 : public mat<T**> {
   public:
     mat2(const unsigned int, const unsigned int);
     ~mat2();
