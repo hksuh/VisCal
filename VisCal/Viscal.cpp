@@ -52,8 +52,19 @@ int matrix_testDrive(){
 }
 
 
+int syntax_testDrive(){
+	mat1 *a =new mat1[3];
+	//a = new int[3];
+	//a[0] = 1;
+	cout << a[0].dim << endl;
+	cout << a[0].size[0] << endl;
+	return 0;
+}
+
+
 int main(){
     srand((unsigned int)time(nullptr));
     //return multiThread();
-    return matrix_testDrive();
+	return syntax_testDrive();
+    //return matrix_testDrive();
 }

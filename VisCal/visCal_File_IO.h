@@ -1,5 +1,6 @@
 #include "indiv.h"
 #include <fstream>
+#pragma once
 
 trainData txtIn();
 trainData txtIn(char* name, unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny, unsigned int outputSize);

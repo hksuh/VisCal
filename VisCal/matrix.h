@@ -36,7 +36,7 @@ class mat{
 	mat(const unsigned int);
 	~mat();
     U * elem;
-	int dim;
+	const int dim;
     unsigned int* size;
     
     /* common method */
@@ -51,7 +51,8 @@ class mat{
 };
 
 class mat1 : public mat<T>{
-  public:
+public:
+	mat1();
 	mat1(const unsigned int);
     ~mat1();
     
@@ -61,7 +62,8 @@ class mat1 : public mat<T>{
 };
 
 class mat2 : public mat<T*> {
-  public:
+public:
+	mat2();
     mat2(const unsigned int, const unsigned int);
     ~mat2();
 

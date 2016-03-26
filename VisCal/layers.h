@@ -1,4 +1,5 @@
 #include "matrix.h"
+#pragma once
 
 // matrix 자료형을 이용한 계산 layer상의 각부분 구현 
 //// 1. 계산흐름은 크게 두부분으로 구분된다.
@@ -13,15 +14,19 @@
 //class channelLayer2 :public vector<layer2>{};
 typedef mat1 layer1;
 typedef mat2 layer2;
-typedef vector<layer2> channelLayer2;
-class totalLayer{
-	vector<channelLayer2> frontL;
-	vector<layer1> rearL;
+typedef layer2* channelLayer2;
+struct totalLayer{
+	channelLayer2* frontL;
+	layer1* rearL;
+
+	totalLayer();
+	~totalLayer();
 };
 
 /*connectivity : keyfunction : layer1 input을 받아 행렬곱하여 layer1계산결과를 target에 쓰는 것.*/
 class conn:public mat2{
 public:
+	
 	void getNext(const layer1& _input, layer1 _target);
 };
 

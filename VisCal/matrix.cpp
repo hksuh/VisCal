@@ -11,8 +11,7 @@
 #include <iostream>
 
 template <typename U>
-mat<U>::mat(const unsigned int _dim) {
-	dim = _dim;
+mat<U>::mat(const unsigned int _dim):dim(_dim){
 	size = new unsigned int[dim];
 }
 
@@ -53,6 +52,10 @@ void mat<U>::random(){
 	delete[] i;
 }
 
+mat1::mat1():mat<T>(1){
+	size[0] = 0;
+	elem = NULL;                 // malloc(n*sizeof(T))
+}
 
 mat1::mat1(const unsigned int n) :mat<T>(1){
 	size[0] = n;
@@ -75,6 +78,14 @@ void mat1::print() {
 		printf("%f, ", elem[i]);
 	}
 	printf("%f]\n", elem[ size[0]-1]);
+}
+
+mat2::mat2():mat<T*>(2){
+	unsigned int i;
+	size[0] = 0;
+	size[1] = 0;
+
+	elem = NULL;                 // malloc(n*sizeof(T))
 }
 
 mat2::mat2(const unsigned int n0, const unsigned int n1):mat<T*>(2){
