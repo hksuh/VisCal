@@ -30,6 +30,7 @@ public:
 	conn();
 	conn(const unsigned int, const unsigned int);
 	mat2::init;
+	mat2::operator[];
 	void getNext(const layer1& _input, layer1 _target);
 };
 
@@ -39,6 +40,7 @@ public:
 	krnl();
 	krnl(const unsigned int, const unsigned int);
 	mat2::init;
+	mat2::operator[];
 	void getNext(const layer2& _input, layer2 _target);
 	void getNext(const channelLayer2& _input, layer2 _target);
 };
@@ -49,6 +51,7 @@ public:
 	thsd();
 	thsd(const unsigned int);
 	mat1::init;
+	mat1::operator[];
 	void getNext(layer1& _target);
 };
 

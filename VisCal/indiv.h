@@ -22,10 +22,8 @@ public:
 	conn* conns;
 	//thresholds[depth]
 	thsd* thsds;
-
-	indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
-		/*Given size dimension matching. All elements are set zero*/
-	};
+	
+	indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL);
 
 	void copy();
 	void rand();

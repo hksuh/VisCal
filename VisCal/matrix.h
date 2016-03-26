@@ -56,6 +56,7 @@ public:
 	mat1(const unsigned int);
 	virtual ~mat1();
 	void init(const unsigned int);
+	mat<T>::operator[];
     
     void random();
     void print();
@@ -68,6 +69,7 @@ public:
     mat2(const unsigned int, const unsigned int);
     virtual ~mat2();
 	void init(const unsigned int, const unsigned int);
+	mat<T*>::operator[];
 
     void random();
     void print();

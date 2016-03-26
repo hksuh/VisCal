@@ -53,11 +53,37 @@ int matrix_testDrive(){
 }
 
 
+class te{
+	public:
+	int** b;
+	te(int** _b){
+		b = _b;
+	}
+};
+
+int ptr_testDrive(){
+	int** a = new int*[3];
+	a[0] = new int[3];
+	a[1] = new int[3];
+	a[2] = new int[3];
+	a[0][0] = 1;
+	te * obj = new te(a);
+	cout << (*obj).b[0][0] << endl;
+	(*obj).b[0][0] = 3;
+	cout << a[0][0] << endl;
+	return 0;
+}
+
 int syntax_testDrive(){
-	conn * a=new conn();
-	//a[0] = 1;
-	//cout << a[0].size[0] << endl;
-	delete a;
+	int** a = new int*[3];
+	a[0] = new int[3];
+	a[1] = new int[3];
+	a[2] = new int[3];
+	a[0][0] = 1;
+	te * obj = new te(a);
+	cout << (*obj).b[0][0] << endl;
+	(*obj).b[0][0] = 3;
+	cout << a[0][0] << endl;
 	return 0;
 }
 
