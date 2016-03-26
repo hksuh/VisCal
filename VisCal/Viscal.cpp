@@ -2,6 +2,7 @@
 //#include "population.h"
 //#include "visCal_File_IO.h"
 #include "matrix.h"
+#include "layers.h"
 #include <thread>
 
 using namespace std;
@@ -53,11 +54,10 @@ int matrix_testDrive(){
 
 
 int syntax_testDrive(){
-	mat1 *a =new mat1[3];
-	//a = new int[3];
+	conn * a=new conn();
 	//a[0] = 1;
-	cout << a[0].dim << endl;
-	cout << a[0].size[0] << endl;
+	//cout << a[0].size[0] << endl;
+	delete a;
 	return 0;
 }
 

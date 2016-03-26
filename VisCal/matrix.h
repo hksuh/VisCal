@@ -34,7 +34,7 @@ template <typename U>
 class mat{
   public:
 	mat(const unsigned int);
-	~mat();
+	virtual ~mat();
     U * elem;
 	const int dim;
     unsigned int* size;
@@ -54,7 +54,8 @@ class mat1 : public mat<T>{
 public:
 	mat1();
 	mat1(const unsigned int);
-    ~mat1();
+	virtual ~mat1();
+	void init(const unsigned int);
     
     void random();
     void print();
@@ -65,7 +66,8 @@ class mat2 : public mat<T*> {
 public:
 	mat2();
     mat2(const unsigned int, const unsigned int);
-    ~mat2();
+    virtual ~mat2();
+	void init(const unsigned int, const unsigned int);
 
     void random();
     void print();

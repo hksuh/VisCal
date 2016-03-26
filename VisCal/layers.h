@@ -23,23 +23,32 @@ struct totalLayer{
 	~totalLayer();
 };
 
+
 /*connectivity : keyfunction : layer1 input을 받아 행렬곱하여 layer1계산결과를 target에 쓰는 것.*/
 class conn:public mat2{
 public:
-	
+	conn();
+	conn(const unsigned int, const unsigned int);
+	mat2::init;
 	void getNext(const layer1& _input, layer1 _target);
 };
 
 /*kernel : keyfunction : layer2나 channelLayer2를 input으로 받아 계산결과를 layer2 target에 쓰는 것. */
-class krnl{
+class krnl:public mat2{
 public:
+	krnl();
+	krnl(const unsigned int, const unsigned int);
+	mat2::init;
 	void getNext(const layer2& _input, layer2 _target);
 	void getNext(const channelLayer2& _input, layer2 _target);
 };
 
 /*threshold : keyfunction : layer1 target의 데이터를 sigmoid 연산하여 수정하는것. */
-class thsd{
+class thsd:public mat1{
 public:
+	thsd();
+	thsd(const unsigned int);
+	mat1::init;
 	void getNext(layer1& _target);
 };
 

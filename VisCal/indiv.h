@@ -11,7 +11,7 @@ public:
 
 	//depth of frontal and rear part
 	unsigned int depthF,depthR;
-	//size_frontL[depth]={number of channels, x length, y length}
+	//size_frontL[depth][*]={number of channels, x length, y length}
 	unsigned int** size_frontL;
 	//size_rearL[depth]
 	unsigned int* size_rearL;
@@ -23,7 +23,7 @@ public:
 	//thresholds[depth]
 	thsd* thsds;
 
-	indiv(unsigned int _depthF, unsigned int _depthR, vector<unsigned int[3]>& _size_frontL, vector<unsigned int>& _size_rearL){
+	indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
 		/*Given size dimension matching. All elements are set zero*/
 	};
 
