@@ -7,7 +7,7 @@
 class indiv{
 public:
 	double score;
-	void calTotalScore(const totalLayer& _layers,const trainData& _trainData){}
+	void calTotalScore(const totalLayer& _layers, const trainData& _trainData);
 
 	//depth of frontal and rear part
 	unsigned int depthF,depthR;
@@ -23,9 +23,7 @@ public:
 	//thresholds[depth]
 	thsd* thsds;
 
-	indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
-		/*Given size dimension matching. All elements are set zero*/
-	};
+	indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL);
 
 	void copy();
 	void rand();
