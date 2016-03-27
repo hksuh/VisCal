@@ -28,8 +28,10 @@ int multiThread(){
 
 int main(){
     srand((unsigned int)time(nullptr));
-	return arraydel();
+	return fileIOTest();
+	//return arraydel();
     //return multiThread();
 	//return syntax_testDrive();
     //return matrix_testDrive();
+	return 0;
 }

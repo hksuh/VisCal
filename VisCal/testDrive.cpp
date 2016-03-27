@@ -1,7 +1,8 @@
 #include "testDrive.h"
 
 int fileIOTest(){
-	//	txtIn("TrainingList.txt", 99, 32, 32, 1);
+	trainData a=txtIn("TrainingList.txt", 300, 32, 32, 1);
+	
 	return 0;
 }
 

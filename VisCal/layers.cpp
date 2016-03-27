@@ -20,3 +20,14 @@ void thsd::getNext(layer1& _target){
 		_target[i]=sigmoid(_target[i], elem[i]);
 	}
 }
+
+trainData::trainData(unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny, unsigned int outputSize){
+	numOfData = numOfInput;
+	input.reserve(numOfInput);
+	expectedResult.reserve(numOfInput);
+	for (int i = 0; i < numOfData; i++){
+		input.push_back(new layer2(input_lenx, input_leny));
+		expectedResult.push_back(layer1(outputSize));
+	}
+	//expectedResult.assign(numOfData, layer1(outputSize));
+}
