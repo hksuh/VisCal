@@ -31,6 +31,7 @@ public:
 	conn(const unsigned int, const unsigned int);
 	mat2::init;
 	mat2::operator[];
+	mat2::setConst;
 	void getNext(const layer1& _input, layer1& _target);
 };
 
@@ -41,6 +42,7 @@ public:
 	krnl(const unsigned int, const unsigned int);
 	mat2::init;
 	mat2::operator[];
+	mat2::setConst;
 	void getNext(const layer2& _input, layer2& _target);
 	void getNext(const channelLayer2& _input, layer2& _target);
 };
@@ -52,6 +54,7 @@ public:
 	thsd(const unsigned int);
 	mat1::init;
 	mat1::operator[];
+	mat1::setConst;
 	double sigmoid(double value, double threshold);
 	void getNext(layer1& _target);
 };
@@ -60,8 +63,11 @@ public:
 struct trainData{
 public:
 	int numOfData;
-	vector<channelLayer2> input;
-	vector<layer1> expectedResult;
+	channelLayer2* input;
+	layer1* expectedResult;
 
 	trainData(unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny, unsigned int outputSize);
+	~trainData();
+
+	void checkInit();
 };

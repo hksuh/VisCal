@@ -42,6 +42,8 @@ class mat{
     /* common method */
   //  void set(int*, T);
     void random();
+	void setConst(T);
+	void set(int*, T);
     void mutate(T);
 
 	U& operator[](int index){
@@ -59,9 +61,11 @@ public:
 	mat<T>::operator[];
     
 	void mutate(T,const unsigned int);
-    mat<T>::random;
+	mat<T>::random;
+	mat<T>::setConst;
     void print();
 
+	mat1& operator=(const mat1& ref);
 };
 
 class mat2 : public mat<T*> {
@@ -75,6 +79,7 @@ public:
 	void product(const mat1& _input, mat1& _target);
 	void mutate(T, const unsigned int, const unsigned int);
 	mat<T*>::random;
+	mat<T*>::setConst;
     void print();
 };
 

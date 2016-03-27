@@ -1,21 +1,31 @@
 #include "testDrive.h"
 
+int trainDataTest(){
+	trainData a=trainData(300, 32, 32, 1);
+	a.checkInit();
+	return 0;
+}
+
 int fileIOTest(){
-	trainData a=txtIn("TrainingList.txt", 300, 32, 32, 1);
-	
+	trainData a=txtIn("TrainingList.txt", 600, 32, 32, 1);
+	cout << "edfdfefedfefdfefd" << endl;
+	a.checkInit();
+	cout << "edfdfefedfefdfefd" << endl;
+	a.input[2][0].print();
+	a.expectedResult[5].print();
 	return 0;
 }
 
 int matrix_testDrive(){
-	mat1 a(4);
+	mat1 a= mat1(4);
 
 	mat2 b(4, 5);
 
 	//    mat3 c(4,5,7);
-	//    a.random();
-	//    cout <<"mat1";
-	//    a.print();
-	//    b.random();
+	(a[0]) = 0.5;
+	    a.print();
+//	    b.setConst(0.5);
+//		b.print();
 	cout << "mat2";
 	cout << "mat2[0][0]" << b.elem[0][0] << endl;
 	cout << "mat2[0][0]" << b[0][0] << endl;

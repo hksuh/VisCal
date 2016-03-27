@@ -17,7 +17,7 @@ mat<U>::mat(const unsigned int _dim):dim(_dim){
 	for (int i = 0; i < dim; i++){
 		size[i] = 0;
 	}
-	elem = NULL;
+	elem = nullptr;
 
 }
 
@@ -39,6 +39,7 @@ mat<U>::set(int* index, T value) {
 }
  */
 
+
 template <typename U>
 void mat<U>::random(){
 	int* i=new int[dim];
@@ -47,6 +48,26 @@ void mat<U>::random(){
 	while (j >= 0)
 	{
 		//set(i, ((double)rand() / (double)RAND_MAX));
+		j = dim - 1;
+		i[j]++;
+		while (i[j] == size[j]){
+			i[j] = 0;
+			j--;
+			if (j < 0){ break; }
+			i[j]++;
+		}
+	}
+	delete[] i;
+}
+
+template <typename U>
+void mat<U>::setConst(T a){
+	int* i = new int[dim];
+	int j = 0;
+	for (j = 0; j < dim; j++){ i[j] = 0; }
+	while (j >= 0)
+	{
+		//set(i, a);
 		j = dim - 1;
 		i[j]++;
 		while (i[j] == size[j]){
@@ -82,14 +103,24 @@ void mat1::print() {
 	unsigned int i;
 	printf("[");
 	for (i = 0; i < size[0] - 1; i++) {
-		printf("%f, ", elem[i]);
+		printf("%f, \n", elem[i]);
 	}
 	printf("%f]\n", elem[ size[0]-1]);
 }
 
+mat1& mat1::operator=(const mat1& ref){
+	if (elem != nullptr){
+		delete[] elem;
+	}
+	init(ref.size[0]);
+	for (int i = 0; i < ref.size[0]; i++){
+		elem[i] = ref.elem[i];
+	}
+	return *this;
+}
+
 mat2::mat2():mat<T*>(2){
 	cout << "mat2()" << endl;
-	unsigned int i;
 	size[0] = 0;
 	size[1] = 0;
 
@@ -141,7 +172,7 @@ void mat2::print() {
     for(j = 0; j <size[1] - 1; j++)
         printf("%f, ", elem[i][j]);
     
-    printf("%f]", elem[size[0] - 1][size[1] - 1]);
+    printf("%f]\n", elem[size[0] - 1][size[1] - 1]);
 }
 
 mat3::mat3(const unsigned int n, const unsigned int m, const unsigned int l) {

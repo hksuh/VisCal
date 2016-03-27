@@ -28,6 +28,7 @@ int multiThread(){
 
 int main(){
     srand((unsigned int)time(nullptr));
+//	return trainDataTest();
 	return fileIOTest();
 	//return arraydel();
     //return multiThread();

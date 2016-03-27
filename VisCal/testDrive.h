@@ -5,6 +5,8 @@
 #include "layers.h"
 #pragma once
 
+int trainDataTest();
+
 int fileIOTest();
 
 int matrix_testDrive();

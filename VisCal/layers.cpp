@@ -21,13 +21,48 @@ void thsd::getNext(layer1& _target){
 	}
 }
 
+
+trainData::trainData(unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny, unsigned int outputSize){
+	numOfData = numOfInput;
+	input = new channelLayer2[numOfInput];
+	expectedResult=new layer1[numOfInput];
+	for (int i = 0; i < numOfData; i++){
+		input[i]=new layer2[1];
+		input[i][0].init(input_lenx, input_leny);
+		expectedResult[i].init(outputSize);
+	}
+}
+
+trainData::~trainData(){
+	for (int i = 0; i < numOfData; i++){
+		delete[] input[i];
+	}
+	delete[] input;
+	delete[] expectedResult;
+}
+/*vector type constructor
 trainData::trainData(unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny, unsigned int outputSize){
 	numOfData = numOfInput;
 	input.reserve(numOfInput);
-	expectedResult.reserve(numOfInput);
+	//expectedResult.reserve(numOfInput);
 	for (int i = 0; i < numOfData; i++){
-		input.push_back(new layer2(input_lenx, input_leny));
-		expectedResult.push_back(layer1(outputSize));
+		input.push_back(new layer2[1]);
+		input[i][0].init(input_lenx, input_leny);
+	//	expectedResult.push_back(layer1());
+	//	expectedResult[i] = new layer1(outputSize);
 	}
-	//expectedResult.assign(numOfData, layer1(outputSize));
+	
+}
+*/
+
+void trainData::checkInit(){
+	cout << "numOfData: " << numOfData << endl;
+	cout << sizeof(input)<< endl;
+	cout << sizeof(expectedResult) << endl;
+	cout << input[0][0].size[0] << endl;
+	cout << input[0][0].size[1] << endl;
+	cout << input[1][0].size[0] << endl;
+	cout << input[1][0].size[1] << endl;
+	cout << expectedResult[0].size[0] << endl;
+	cout << expectedResult[1].size[0] << endl;
 }
