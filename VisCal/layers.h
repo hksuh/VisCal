@@ -31,7 +31,7 @@ public:
 	conn(const unsigned int, const unsigned int);
 	mat2::init;
 	mat2::operator[];
-	void getNext(const layer1& _input, layer1 _target);
+	void getNext(const layer1& _input, layer1& _target);
 };
 
 /*kernel : keyfunction : layer2나 channelLayer2를 input으로 받아 계산결과를 layer2 target에 쓰는 것. */
@@ -41,8 +41,8 @@ public:
 	krnl(const unsigned int, const unsigned int);
 	mat2::init;
 	mat2::operator[];
-	void getNext(const layer2& _input, layer2 _target);
-	void getNext(const channelLayer2& _input, layer2 _target);
+	void getNext(const layer2& _input, layer2& _target);
+	void getNext(const channelLayer2& _input, layer2& _target);
 };
 
 /*threshold : keyfunction : layer1 target의 데이터를 sigmoid 연산하여 수정하는것. */
@@ -52,6 +52,7 @@ public:
 	thsd(const unsigned int);
 	mat1::init;
 	mat1::operator[];
+	double sigmoid(double value, double threshold);
 	void getNext(layer1& _target);
 };
 

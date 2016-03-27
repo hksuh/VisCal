@@ -58,7 +58,8 @@ public:
 	void init(const unsigned int);
 	mat<T>::operator[];
     
-    void random();
+	void mutate(T,const unsigned int);
+    mat<T>::random;
     void print();
 
 };
@@ -71,7 +72,9 @@ public:
 	void init(const unsigned int, const unsigned int);
 	mat<T*>::operator[];
 
-    void random();
+	void product(const mat1& _input, mat1& _target);
+	void mutate(T, const unsigned int, const unsigned int);
+	mat<T*>::random;
     void print();
 };
 

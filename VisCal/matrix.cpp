@@ -78,10 +78,6 @@ mat1::~mat1(){
 	delete[] elem;
 }
 
-void mat1::random(){
-	mat<T>::random();
-}
-
 void mat1::print() {
 	unsigned int i;
 	printf("[");
@@ -125,8 +121,13 @@ mat2::~mat2() {
 	delete[] elem;
 }
 
-void mat2::random() {
-    mat<T*>::random();
+void mat2::product(const mat1& _input, mat1& _target){
+	for (int i = 0; i < size[0]; i++){
+		_target[i] = 0;
+		for (unsigned int j = 0; j < size[1]; j++){
+			_target.elem[i] += elem[i][j] *(_input.elem[j]);
+		}
+	}
 }
 
 void mat2::print() {
