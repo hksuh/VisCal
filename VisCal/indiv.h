@@ -24,6 +24,7 @@ public:
 	thsd* thsds;
 
 	indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL);
+	~indiv();
 
 	void copy();
 	void rand();

@@ -19,5 +19,18 @@ indiv::indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_fr
 		thsds[i].init(size_rearL[i+1]);
 	}
 };
+
+indiv::~indiv(){
+	delete[] conns;
+	delete[] thsds;
+
+	for (int i = 0; i < depthF; i++){
+		delete[] size_frontL[i];
+		delete[] krnls[i];
+	}
+	delete[] size_frontL;
+	delete[] size_rearL;
+}
+
 void indiv::calTotalScore(const totalLayer& _layers, const trainData& _trainData){
 };
