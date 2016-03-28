@@ -1,5 +1,16 @@
 #include "indiv.h"
+
+indiv::indiv(){
+	krnls = nullptr;
+	conns = nullptr;
+	thsds = nullptr;
+}
+
 indiv::indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
+	init(_depthF,_depthR,_size_frontL,_size_rearL);
+};
+
+void indiv::init(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
 	/*Given size dimension matching. All elements are set zero*/
 	depthF = _depthF;
 	krnls = new krnl*[depthF];
@@ -10,13 +21,13 @@ indiv::indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_fr
 	}
 	depthR = _depthR; //depthR is # of layers
 	size_rearL = _size_rearL;
-	conns = new conn[depthR-1]; 
-	for (int i = 0; i < depthR-1; i++){
-		conns[i].init(size_rearL[i+1],size_rearL[i]);
+	conns = new conn[depthR - 1];
+	for (int i = 0; i < depthR - 1; i++){
+		conns[i].init(size_rearL[i + 1], size_rearL[i]);
 	}
 	thsds = new thsd[depthR - 1];
 	for (int i = 0; i < depthR - 1; i++){
-		thsds[i].init(size_rearL[i+1]);
+		thsds[i].init(size_rearL[i + 1]);
 	}
 };
 

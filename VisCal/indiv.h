@@ -23,7 +23,9 @@ public:
 	//thresholds[depth]
 	thsd* thsds;
 
+	indiv();
 	indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL);
+	void init(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL);
 	~indiv();
 
 	void copy();
