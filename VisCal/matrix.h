@@ -41,10 +41,9 @@ class mat{
     
     /* common method */
   //  void set(int*, T);
+    //    void mutate(T);
     void random();
-	void setConst(T);
-	void set(int*, T);
-    void mutate(T);
+
 
 	U& operator[](int index){
 		return elem[index];
@@ -58,11 +57,12 @@ public:
 	mat1(const unsigned int);
 	virtual ~mat1();
 	void init(const unsigned int);
-	mat<T>::operator[];
+	using mat<T>::operator[];
     
 	void mutate(T,const unsigned int);
-	mat<T>::random;
-	mat<T>::setConst;
+    void random();
+    void copy(const mat1&);
+//	mat<T>::setConst;
     void print();
 
 	mat1& operator=(const mat1& ref);
@@ -74,31 +74,10 @@ public:
     mat2(const unsigned int, const unsigned int);
     virtual ~mat2();
 	void init(const unsigned int, const unsigned int);
-	mat<T*>::operator[];
+	using mat<T*>::operator[];
 
 	void product(const mat1& _input, mat1& _target);
-	void mutate(T, const unsigned int, const unsigned int);
-	mat<T*>::random;
-	mat<T*>::setConst;
+//	void mutate(T, const unsigned int, const unsigned int);
+	void random();
     void print();
 };
-
-class mat3 {
-public:
-    T*** elem;
-    unsigned int size_n, size_m, size_l;
-    unsigned int size;
-    
-    mat3(const unsigned int, const unsigned int, const unsigned int);
-    ~mat3();
-    
-    void add(const mat3&, const mat3&);
-    void random();
-    void print();
-};
-
-/*
-class mat4{};
-
-class mat5{};
-*/

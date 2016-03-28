@@ -12,18 +12,15 @@
 
 template <typename U>
 mat<U>::mat(const unsigned int _dim):dim(_dim){
-	cout << "mat()" << endl;
 	size = new unsigned int[dim];
 	for (int i = 0; i < dim; i++){
 		size[i] = 0;
 	}
 	elem = nullptr;
-
 }
 
 template <typename U>
 mat<U>::~mat() {
-	cout << "~mat()" << endl;
 	delete[] size;
 }
 /*
@@ -39,7 +36,7 @@ mat<U>::set(int* index, T value) {
 }
  */
 
-
+/*
 template <typename U>
 void mat<U>::random(){
 	int* i=new int[dim];
@@ -59,7 +56,8 @@ void mat<U>::random(){
 	}
 	delete[] i;
 }
-
+*/
+/*
 template <typename U>
 void mat<U>::setConst(T a){
 	int* i = new int[dim];
@@ -79,6 +77,7 @@ void mat<U>::setConst(T a){
 	}
 	delete[] i;
 }
+ */
 
 mat1::mat1():mat<T>(1){
 	size[0] = 0;               // malloc(n*sizeof(T))
@@ -91,11 +90,10 @@ mat1::mat1(const unsigned int n) :mat<T>(1){
 
 void mat1::init(const unsigned int n){
 	size[0] = n;
-	elem = new T[n];                 // malloc(n*sizeof(T))
+	elem = new T[n];
 }
 
 mat1::~mat1(){
-	cout << "~mat1()" << endl;
 	delete[] elem;
 }
 
@@ -108,19 +106,33 @@ void mat1::print() {
 	printf("%f]\n", elem[ size[0]-1]);
 }
 
+void mat1::random() {
+    int i;
+    
+    for(i = 0; i < size[0]; i++)
+    {
+        elem[i] = rand()%100000000/100000000.0;
+    }
+}
+
 mat1& mat1::operator=(const mat1& ref){
 	if (elem != nullptr){
 		delete[] elem;
 	}
 	init(ref.size[0]);
-	for (int i = 0; i < ref.size[0]; i++){
-		elem[i] = ref.elem[i];
-	}
+    copy(ref);
+
 	return *this;
 }
 
+void mat1::copy(const mat1& ref){
+    for (int i = 0; i < ref.size[0]; i++){
+        elem[i] = ref.elem[i];
+    }
+}
+
+
 mat2::mat2():mat<T*>(2){
-	cout << "mat2()" << endl;
 	size[0] = 0;
 	size[1] = 0;
 
@@ -144,7 +156,6 @@ void mat2::init(const unsigned int n0, const unsigned int n1){
 }
 
 mat2::~mat2() {
-	cout << "~mat2()" << endl;
 	unsigned int i;
 	for (i = 0; i < size[0]; i++) {
 		delete[] elem[i];
@@ -173,6 +184,23 @@ void mat2::print() {
         printf("%f, ", elem[i][j]);
     
     printf("%f]\n", elem[size[0] - 1][size[1] - 1]);
+}
+
+void mat2::random() {
+    int i, j;
+    
+    for(i = 0; i < size[0]; i++) {
+        for(j = 0; j < size[1]; j++) {
+            elem[i][j] = rand()%100000000/100000000.0;
+        }
+    }
+}
+/*
+mat3::mat2():mat<T**>(3){
+    size[0] = 0;
+    size[1] = 0;
+    
+    elem = NULL;                 // malloc(n*sizeof(T))
 }
 
 mat3::mat3(const unsigned int n, const unsigned int m, const unsigned int l) {
@@ -246,3 +274,4 @@ void mat3::print() {
 		printf("%f]\n", elem[h][size_m - 1][size_n - 1]);
 	}
 }
+*/

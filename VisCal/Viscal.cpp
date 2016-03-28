@@ -2,9 +2,9 @@
 //#include "population.h"
 //#include "visCal_File_IO.h"
 #include "matrix.h"
-#include "layers.h"
+//#include "layers.h"
 #include <thread>
-#include "testDrive.h"
+//#include "testDrive.h"
 
 using namespace std;
 
@@ -28,11 +28,16 @@ int multiThread(){
 
 int main(){
     srand((unsigned int)time(nullptr));
-//	return trainDataTest();
-	return fileIOTest();
-	//return arraydel();
-    //return multiThread();
-	//return syntax_testDrive();
-    //return matrix_testDrive();
+    
+    mat1 a = mat1(3);
+    a.print();
+    a.random();
+    a.print();
+    a.random();
+    a.print();
+    mat2 b = mat2(3, 4);
+    b.print();
+    b.random();
+    b.print();
 	return 0;
 }
