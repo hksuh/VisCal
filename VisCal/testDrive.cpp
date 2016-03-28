@@ -17,25 +17,19 @@ int fileIOTest(){
 }
 
 int matrix_testDrive(){
-	mat1 a= mat1(4);
-
-	mat2 b(4, 5);
-
-	//    mat3 c(4,5,7);
-	(a[0]) = 0.5;
-	    a.print();
-//	    b.setConst(0.5);
-//		b.print();
-	cout << "mat2";
-	cout << "mat2[0][0]" << b.elem[0][0] << endl;
-	cout << "mat2[0][0]" << b[0][0] << endl;
-
-	b.print();
-	//    c.random();
-	//    cout <<"mat3";
-	//    c.print();
-	double alter;
-	cin >> alter;
+    cout << "testing mat1 & mat2 class" << endl;
+    mat1 a = mat1(3);
+    cout << "printing mat1, matrix should be filled with 0" << endl;
+    a.print();
+    cout << "randomizing mat1" << endl;
+    a.random();
+    a.print();
+    cout << "printing mat2, matrix should be filled with 0" << endl;
+    mat2 b = mat2(3, 11);
+    b.print();
+    cout << "randomizing mat1" << endl;
+    b.random();
+    b.print();
 	return 0;
 }
 

@@ -40,9 +40,9 @@ class krnl:public mat2{
 public:
 	krnl();
 	krnl(const unsigned int, const unsigned int);
-	mat2::init;
-	mat2::operator[];
-	mat2::setConst;
+	using mat2::init;
+	using mat2::operator[];
+	using mat2::setConst;
 	void getNext(const layer2& _input, layer2& _target);
 	void getNext(const channelLayer2& _input, layer2& _target);
 };
@@ -52,9 +52,9 @@ class thsd:public mat1{
 public:
 	thsd();
 	thsd(const unsigned int);
-	mat1::init;
-	mat1::operator[];
-	mat1::setConst;
+	using mat1::init;
+	using mat1::operator[];
+	using mat1::setConst;
 	double sigmoid(double value, double threshold);
 	void getNext(layer1& _target);
 };
