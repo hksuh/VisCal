@@ -12,6 +12,14 @@ indiv::indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_fr
 
 void indiv::init(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
 	/*Given size dimension matching. All elements are set zero*/
+	/*
+
+	DIMENSION SETTINGS
+	size_frontL=depthF
+	size_rearL=depthR+1
+
+	*/
+
 	depthF = _depthF;
 	krnls = new krnl*[depthF];
 	size_frontL = _size_frontL;
@@ -19,15 +27,15 @@ void indiv::init(unsigned int _depthF, unsigned int _depthR, unsigned int** _siz
 		krnls[i] = new krnl[size_frontL[i][0]];
 		//for loop should be made after we set kernel
 	}
-	depthR = _depthR; //depthR is # of layers
+	depthR = _depthR;
 	size_rearL = _size_rearL;
-	conns = new conn[depthR - 1];
-	for (int i = 0; i < depthR - 1; i++){
-		conns[i].init(size_rearL[i + 1], size_rearL[i]);
+	conns = new conn[depthR]; 
+	for (int i = 0; i < depthR; i++){
+		conns[i].init(size_rearL[i+1],size_rearL[i]);
 	}
-	thsds = new thsd[depthR - 1];
-	for (int i = 0; i < depthR - 1; i++){
-		thsds[i].init(size_rearL[i + 1]);
+	thsds = new thsd[depthR];
+	for (int i = 0; i < depthR; i++){
+		thsds[i].init(size_rearL[i+1]);
 	}
 };
 
@@ -43,5 +51,39 @@ indiv::~indiv(){
 	delete[] size_rearL;
 }
 
-void indiv::calTotalScore(const totalLayer& _layers, const trainData& _trainData){
+void indiv::calScore(totalLayer& _layers, const trainData& _trainData, int dataNum){
+	//_layers.frontL;
+	//_trainData.numOfData;
+	double iter;
+	for (int j = 0; j < size_frontL[0][0]; j++){ //channel
+		krnls[0][j].getNext(_trainData.input[dataNum], _layers.frontL[0][j]);
+	}
+	for (int i = 0; i < depthF-1; i++){
+		for (int j = 0; j < size_frontL[i][0]; j++){ //channel
+			krnls[i][j].getNext(_layers.frontL[i], _layers.frontL[i+1][j]);
+		}
+	}
+	flatten(_layers.frontL[depthF-1],_layers.rearL[0]); //insert flatten function to make it mat1
+	//void getNext(const layer1& _input, layer1& _target);
+	for (int i = 0; i < depthR; i++){
+		conns[i].getNext(_layers.rearL[i], _layers.rearL[i + 1]);
+		thsds[i].getNext(_layers.rearL[i + 1]);
+	}
+	for (int i = 0; i < size_rearL[depthR]; i++){
+		iter=(_layers.rearL[depthR][i] - _trainData.expectedResult[dataNum][i]);
+		score += iter*iter;
+	}
 };
+
+void indiv::calTotalScore(totalLayer& _layers, const trainData& _trainData){
+	score = 0;
+	for (int i = 0; i < _trainData.numOfData; i++){
+		calScore(_layers, _trainData, i);
+	}
+};
+//void rand(){
+	
+//};
+void mutate();
+string toStr();
+void show();
