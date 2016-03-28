@@ -1,6 +1,13 @@
 #include "layers.h"
 #include <math.h>
 
+void flatten(const channelLayer2& _input, layer1& _output) {
+    int i;
+    for(i = 0; i < _input->size[0]; i++) {
+        _output.elem[i] = _input[i][0][0];
+    }
+}
+
 conn::conn(){};
 conn::conn(const unsigned int n0, const unsigned int n1):mat2(n0, n1){};
 void conn::getNext(const layer1& _input, layer1& _target){

@@ -15,6 +15,7 @@
 typedef mat1 layer1;
 typedef mat2 layer2;
 typedef layer2* channelLayer2;
+
 struct totalLayer{
 	channelLayer2* frontL;
 	layer1* rearL;
@@ -23,15 +24,15 @@ struct totalLayer{
 	~totalLayer();
 };
 
+void flatten(const channelLayer2&, layer1&);
 
 /*connectivity : keyfunction : layer1 input을 받아 행렬곱하여 layer1계산결과를 target에 쓰는 것.*/
 class conn:public mat2{
 public:
 	conn();
 	conn(const unsigned int, const unsigned int);
-	mat2::init;
-	mat2::operator[];
-	mat2::setConst;
+	using mat2::init;
+	using mat2::operator[];
 	void getNext(const layer1& _input, layer1& _target);
 };
 
@@ -42,7 +43,6 @@ public:
 	krnl(const unsigned int, const unsigned int);
 	using mat2::init;
 	using mat2::operator[];
-	using mat2::setConst;
 	void getNext(const layer2& _input, layer2& _target);
 	void getNext(const channelLayer2& _input, layer2& _target);
 };
@@ -54,7 +54,6 @@ public:
 	thsd(const unsigned int);
 	using mat1::init;
 	using mat1::operator[];
-	using mat1::setConst;
 	double sigmoid(double value, double threshold);
 	void getNext(layer1& _target);
 };
