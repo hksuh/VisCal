@@ -1,10 +1,10 @@
 #include <iostream>
-//#include "population.h"
-//#include "visCal_File_IO.h"
+#include "population.h"
+#include "visCal_File_IO.h"
 #include "matrix.h"
-//#include "layers.h"
+#include "layers.h"
 #include <thread>
-//#include "testDrive.h"
+#include "testDrive.h"
 
 using namespace std;
 

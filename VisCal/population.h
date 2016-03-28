@@ -3,5 +3,5 @@
 
 class population{
 public:
-	indiv a[];
+	//indiv a[];
 };
