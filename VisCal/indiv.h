@@ -7,7 +7,8 @@
 class indiv{
 public:
 	double score;
-	void calTotalScore(const totalLayer& _layers, const trainData& _trainData);
+	void calTotalScore(totalLayer& _layers, const trainData& _trainData);
+	void calScore(totalLayer& _layers, const trainData& _trainData, int dataNum);
 
 	//depth of frontal and rear part
 	unsigned int depthF,depthR;
