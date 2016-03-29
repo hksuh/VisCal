@@ -1,5 +1,16 @@
 #include "indiv.h"
+
+indiv::indiv(){
+	krnls = nullptr;
+	conns = nullptr;
+	thsds = nullptr;
+}
+
 indiv::indiv(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
+	init(_depthF,_depthR,_size_frontL,_size_rearL);
+};
+
+void indiv::init(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL){
 	/*Given size dimension matching. All elements are set zero*/
 	/*
 
@@ -70,9 +81,9 @@ void indiv::calTotalScore(totalLayer& _layers, const trainData& _trainData){
 		calScore(_layers, _trainData, i);
 	}
 };
-void rand(){
+//void rand(){
 	
-};
+//};
 void mutate();
 string toStr();
 void show();

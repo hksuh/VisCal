@@ -274,4 +274,4 @@ void mat3::print() {
 		printf("%f]\n", elem[h][size_m - 1][size_n - 1]);
 	}
 }
- */
+*/
