@@ -136,7 +136,7 @@ mat2::mat2():mat<T*>(2){
 	size[0] = 0;
 	size[1] = 0;
 
-	elem = NULL;                 // malloc(n*sizeof(T))
+	elem = nullptr;                 // malloc(n*sizeof(T))
 }
 
 mat2::mat2(const unsigned int n0, const unsigned int n1) :mat<T*>(2){
