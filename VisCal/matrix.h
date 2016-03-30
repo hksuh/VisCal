@@ -85,6 +85,6 @@ public:
 	void mutate(T);
 	void mutate(T, const unsigned int&, const unsigned int&);
 	
-	void copy(const mat1&);
-	mat1& operator=(const mat1& ref);
+	void copy(const mat2&);
+	mat2& operator=(const mat2& ref);
 };

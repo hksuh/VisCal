@@ -48,6 +48,7 @@ indiv::~indiv(){
 		delete[] krnls[i];
 	}
 	delete[] size_frontL;
+	delete[] krnls;
 	delete[] size_rearL;
 }
 
@@ -81,9 +82,38 @@ void indiv::calTotalScore(totalLayer& _layers, const trainData& _trainData){
 		calScore(_layers, _trainData, i);
 	}
 };
-//void rand(){
-	
-//};
+
+void indiv::rand(){
+	for (int i = 0; i < depthF; i++){
+		for (int j = 0; j < size_frontL[i][0]; j++){
+			krnls[i][j].random();
+		}
+	}
+	for (int i = 0; i < depthR; i++){
+		conns[i].random();
+		thsds[i].random();
+	}
+};
+
+void indiv::copy(const indiv& _ref){
+	for (int i = 0; i < depthF; i++){
+		for (int j = 0; j < size_frontL[i][0]; j++){
+			krnls[i][j].copy(_ref.krnls[i][j]);
+		}
+	}
+	for (int i = 0; i < depthR; i++){
+		conns[i].copy(_ref.conns[i]);
+		thsds[i].copy(_ref.thsds[i]);
+	}
+}
+
+indiv& indiv::operator=(const indiv& _ref){
+	this->~indiv();
+	init(_ref.depthF, _ref.depthR, _ref.size_frontL, _ref.size_rearL);
+	copy(_ref);
+	return *this;
+}
+
 void indiv::mutate(T _foot){
 	mutate(_foot, 1);
 	mutate(_foot, 2);

@@ -120,6 +120,24 @@ int mutation_testDrive(){
 	return 0;
 }
 
+int copy_testDrive(){
+	conn a(3, 3);
+	a.setConst(0.5);
+	conn b(2,2);
+	b = a;
+	a[2][2] = 1.0;
+	a.print();
+	b.print();
+	thsd c(3);
+	c.setConst(0.5);
+	thsd d(2);
+	d = c;
+	c[2] = 1.0;
+	c.print();
+	d.print();
+	return 0;
+}
+
 class te{
 public:
 	int** b;

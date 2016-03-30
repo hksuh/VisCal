@@ -232,6 +232,28 @@ void mat2::mutate(T _foot, const unsigned int& _i, const unsigned int& _j){
 	elem[_i][_j] += _foot*((double)rand() / (double)RAND_MAX-0.5);
 }
 
+mat2& mat2::operator=(const mat2& ref){
+	if (elem != nullptr){
+		for (int i = 0; i < size[0]; i++) {
+			delete[] elem[i];
+		}
+		delete[] elem;
+	}
+	init(ref.size[0],ref.size[1]);
+	copy(ref);
+
+	return *this;
+}
+
+void mat2::copy(const mat2& ref){
+	for (int i = 0; i < ref.size[0]; i++){
+		for (int j = 0; j < ref.size[1]; j++){
+			elem[i][j] = ref.elem[i][j];
+		}
+	}
+}
+
+
 /*
 mat3::mat2():mat<T**>(3){
     size[0] = 0;
