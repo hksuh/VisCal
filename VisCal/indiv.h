@@ -31,7 +31,8 @@ public:
 
 	void copy();
 	void rand();
-	void mutate();
+	void mutate(T _foot);
+	void mutate(T _foot,int typenumber);
 	string toStr();
 	void show();
 };

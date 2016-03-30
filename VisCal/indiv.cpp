@@ -84,6 +84,45 @@ void indiv::calTotalScore(totalLayer& _layers, const trainData& _trainData){
 //void rand(){
 	
 //};
-void mutate();
+void indiv::mutate(T _foot){
+	mutate(_foot, 1);
+	mutate(_foot, 2);
+}
+
+void indiv::mutate(T _foot, int typenumber){
+	//1:mutate kernel(front Layer)
+	//2:mutate rear Layer
+	//3:mutate conn
+	//4:mutate thsd
+	switch (typenumber)
+	{
+	case 1:
+		for (int i = 0; i < depthF; i++){
+			for (int j = 0; j < size_frontL[i][0]; j++){
+				krnls[i][j].mutate(_foot);
+			}
+		}
+		break;
+	case 2:
+		for (int i = 0; i < depthR; i++){
+			conns[i].mutate(_foot);
+			thsds[i].mutate(_foot);
+		}
+		break;
+	case 3:
+		for (int i = 0; i < depthR; i++){
+			conns[i].mutate(_foot);
+		}
+		break;
+	case 4:
+		for (int i = 0; i < depthR; i++){
+			thsds[i].mutate(_foot);
+		}
+		break;
+	default:
+		cout<<"indiv::mutate function typeNumber error";
+	}
+}
+
 string toStr();
 void show();

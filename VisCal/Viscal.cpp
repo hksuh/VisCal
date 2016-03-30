@@ -29,15 +29,6 @@ int multiThread(){
 int main(){
     srand((unsigned int)time(nullptr));
     
-    mat1 a = mat1(3);
-    a.print();
-    a.random();
-    a.print();
-    a.random();
-    a.print();
-    mat2 b = mat2(3, 4);
-    b.print();
-    b.random();
-    b.print();
+	return mutation_testDrive();
 	return 0;
 }

@@ -17,6 +17,10 @@ void conn::getNext(const layer1& _input, layer1& _target){
 krnl::krnl(){};
 krnl::krnl(const unsigned int n0, const unsigned int n1) :mat2(n0, n1){};
 
+void krnl::getNext(const channelLayer2& _input, layer2& _target){
+	
+}
+
 thsd::thsd(){};
 thsd::thsd(const unsigned int n0) :mat1(n0){};
 T thsd::sigmoid(T value, T threshold){

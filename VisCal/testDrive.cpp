@@ -33,6 +33,16 @@ int matrix_testDrive(){
 	return 0;
 }
 
+int mutation_testDrive(){
+	int count = 0;
+	for (int i = 0; i < 100000; i++){
+		if (!(rand() % 10)){ count++; };
+	}
+	cout << count << endl;
+	
+	return 0;
+}
+
 class te{
 public:
 	int** b;

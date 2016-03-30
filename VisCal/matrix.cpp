@@ -131,6 +131,17 @@ void mat1::copy(const mat1& ref){
     }
 }
 
+void mat1::mutate(T _foot){
+	for (int i = 0; i < size[0]; i++){
+		if (!(rand() % 10)){
+			elem[i] += _foot*((double)rand() / (double)RAND_MAX - 0.5);
+		}
+	}
+}
+
+void mat1::mutate(T _foot, const unsigned int& _i){
+	elem[_i] += _foot*((double)rand() / (double)RAND_MAX - 0.5);
+}
 
 mat2::mat2():mat<T*>(2){
 	size[0] = 0;
@@ -195,6 +206,21 @@ void mat2::random() {
         }
     }
 }
+
+void mat2::mutate(T _foot){
+	for (int i = 0; i < size[0]; i++){
+		for (int j = 0; j < size[1]; j++){
+			if (!(rand() % 10)){
+				elem[i][j] += _foot*((double)rand() / (double)RAND_MAX - 0.5);
+			}
+		}
+	}
+}
+
+void mat2::mutate(T _foot, const unsigned int& _i, const unsigned int& _j){
+	elem[_i][_j] += _foot*((double)rand() / (double)RAND_MAX-0.5);
+}
+
 /*
 mat3::mat2():mat<T**>(3){
     size[0] = 0;

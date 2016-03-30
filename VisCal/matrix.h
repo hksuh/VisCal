@@ -58,13 +58,15 @@ public:
 	virtual ~mat1();
 	void init(const unsigned int);
 	using mat<T>::operator[];
-    
-	void mutate(T,const unsigned int);
+
     void random();
-    void copy(const mat1&);
 //	mat<T>::setConst;
     void print();
 
+	void mutate(T);
+	void mutate(T, const unsigned int&);
+
+	void copy(const mat1&);
 	mat1& operator=(const mat1& ref);
 };
 
@@ -77,7 +79,13 @@ public:
 	using mat<T*>::operator[];
 
 	void product(const mat1& _input, mat1& _target);
-//	void mutate(T, const unsigned int, const unsigned int);
+
 	void random();
-    void print();
+	void print();
+
+	void mutate(T);
+	void mutate(T, const unsigned int&, const unsigned int&);
+	
+	void copy(const mat1&);
+	mat1& operator=(const mat1& ref);
 };
