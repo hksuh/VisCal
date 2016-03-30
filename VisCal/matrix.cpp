@@ -83,7 +83,6 @@ mat1::mat1():mat<T>(1){
 	size[0] = 0;               // malloc(n*sizeof(T))
 }
 
-
 mat1::mat1(const unsigned int n) :mat<T>(1){
 	init(n);
 }
@@ -107,12 +106,17 @@ void mat1::print() {
 }
 
 void mat1::random() {
-    int i;
-    
-    for(i = 0; i < size[0]; i++)
+    for(int i = 0; i < size[0]; i++)
     {
-        elem[i] = rand()%100000000/100000000.0;
+        //elem[i] = rand()%100000000/100000000.0;
+		elem[i] = 2.*(double)rand() / (double)RAND_MAX - 1.;
     }
+}
+
+void mat1::setConst(T constant){
+	for (int i = 0; i < size[0]; i++){
+		elem[i] = constant;
+	}
 }
 
 mat1& mat1::operator=(const mat1& ref){
@@ -198,13 +202,20 @@ void mat2::print() {
 }
 
 void mat2::random() {
-    int i, j;
-    
-    for(i = 0; i < size[0]; i++) {
-        for(j = 0; j < size[1]; j++) {
-            elem[i][j] = rand()%100000000/100000000.0;
+    for(int i = 0; i < size[0]; i++) {
+        for(int j = 0; j < size[1]; j++) {
+            //elem[i][j] = rand()%100000000/100000000.0;
+			elem[i][j] = 2.*(double)rand() / (double)RAND_MAX - 1.;
         }
     }
+}
+
+void mat2::setConst(T constant){
+	for (int i = 0; i < size[0]; i++){
+		for (int j = 0; j < size[1]; j++){
+			elem[i][j]=constant;
+		}
+	}
 }
 
 void mat2::mutate(T _foot){

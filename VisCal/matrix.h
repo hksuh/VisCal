@@ -45,9 +45,7 @@ class mat{
     void random();
 
 
-	U& operator[](int index){
-		return elem[index];
-	}
+	U& operator[](int index){return elem[index];}
 
 };
 
@@ -60,7 +58,7 @@ public:
 	using mat<T>::operator[];
 
     void random();
-//	mat<T>::setConst;
+	void setConst(T);
     void print();
 
 	void mutate(T);
@@ -81,6 +79,7 @@ public:
 	void product(const mat1& _input, mat1& _target);
 
 	void random();
+	void setConst(T);
 	void print();
 
 	void mutate(T);

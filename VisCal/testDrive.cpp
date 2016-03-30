@@ -34,12 +34,89 @@ int matrix_testDrive(){
 }
 
 int mutation_testDrive(){
-	int count = 0;
-	for (int i = 0; i < 100000; i++){
-		if (!(rand() % 10)){ count++; };
-	}
-	cout << count << endl;
 	
+	const int num = 5;
+	bool q = true;
+	double count = 0;
+
+	cout << "==========test conn setConst , mutate==========" << endl;
+	
+	conn a(num,num);
+
+	a.setConst(1);
+	for (int j = 0; j < num; j++){
+		for (int k = 0; k < num; k++){
+			if (a[j][k] != 1){ q = false; }
+		}
+	}
+	if (q){ cout << "setConst operates well" << endl; }
+	else{ cout << "setConst is fucked up" << endl; }
+
+	for (int i = 0; i < 100000; i++){
+		a.setConst(0);
+		a.mutate(1.0);
+		for (int j = 0; j < num; j++){
+			for (int k = 0; k < num; k++){
+				if (a[j][k] != 0){ count++; }
+			}
+		}
+	}
+	cout << "example table of mutation" << endl;
+	a.print();
+	cout << "prob of mut (should be 0.1):"<<count / (100000.*num*num) << endl;
+
+	cout << "==========test krnl setConst , mutate==========" << endl;
+
+	krnl b(num, num);
+
+	b.setConst(1);
+	q = true;
+	for (int j = 0; j < num; j++){
+		for (int k = 0; k < num; k++){
+			if (b[j][k] != 1){ q = false; }
+		}
+	}
+	if (q){ cout << "setConst operates well" << endl; }
+	else{ cout << "setConst is fucked up" << endl; }
+
+	count = 0;
+	for (int i = 0; i < 100000; i++){
+		b.setConst(0);
+		b.mutate(1.0);
+		for (int j = 0; j < num; j++){
+			for (int k = 0; k < num; k++){
+				if (b[j][k] != 0){ count++; }
+			}
+		}
+	}
+	cout << "example table of mutation" << endl;
+	b.print();
+	cout << "prob of mut (should be 0.1):" << count / (100000.*num*num) << endl;
+
+	cout << "==========test conn setConst , mutate==========" << endl;
+
+	thsd c(num);
+
+	c.setConst(1);
+	
+	q = true;
+	for (int j = 0; j < num; j++){
+		if (c[j]!=1){ q = false; }
+	}
+	if (q){ cout << "setConst operates well" << endl; }
+	else{ cout << "setConst is fucked up" << endl; }
+
+	count = 0;
+	for (int i = 0; i < 100000; i++){
+		c.setConst(0);
+		c.mutate(1.0);
+		for (int j = 0; j < num; j++){
+			if (c[j] != 0){ count++; }
+		}
+	}
+	cout << "example table of mutation" << endl;
+	c.print();
+	cout << "prob of mut (should be 0.1):" << count / (100000.*num) << endl;
 	return 0;
 }
 
