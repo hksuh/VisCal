@@ -26,5 +26,6 @@ class population{
     indiv * trial;
     
     /* training data */
-    trainData data;
+	trainData data = txtIn();
+	double foot;
 };

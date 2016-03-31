@@ -38,26 +38,28 @@ population::population(){
     ref = new indiv[num];
     trial = new indiv[num];
     
+	indiv initIndiv;
+	foot = 0.3;
+
     for (int i = 0; i < num; i++){
         ref[i].init(depthF,depthR,size_frontL,size_rearL);
-        ref[i].rand();   /*********************???????????*****************/
-        
+		ref[i].copy(initIndiv);
         trial[i].init(depthF, depthR, size_frontL, size_rearL);
+		trial[i].copy(initIndiv);
     }
     
     /* import training data */
     //data = txtIn
-    //data = txtIn(<#char *name#>, <#unsigned int numOfInput#>, <#unsigned int input_lenx#>, <#unsigned int input_leny#>, <#unsigned int outputSize#>)
 }
 
 void population::learn(T foot_size) {
     for(int i = 0; i < num; i++) {
         ref[i].mutate(foot_size);
-        ref[i].calTotalScore(layers, data);
         trial[i].calTotalScore(layers, data);
         
         if(ref[i].score < trial[i].score) {
-            trial[i].copy(ref[i]);
+            ref[i].copy(trial[i]);
+            cout << "ref[" << i << "]:" << ref[i].score << endl;
         }
     }
 }

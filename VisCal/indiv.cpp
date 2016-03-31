@@ -105,6 +105,7 @@ void indiv::copy(const indiv& _ref){
 		conns[i].copy(_ref.conns[i]);
 		thsds[i].copy(_ref.thsds[i]);
 	}
+	score = _ref.score;
 }
 
 indiv& indiv::operator=(const indiv& _ref){
