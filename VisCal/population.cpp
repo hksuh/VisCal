@@ -12,7 +12,7 @@ population::population(){
     /* set size information */
     size_frontL = new unsigned int*[depthF];
     size_rearL = new unsigned int[depthR+1];
-    
+
     for (int i = 0; i < depthF; i++) {
         size_frontL[i] = new unsigned int[3];
     }
@@ -56,14 +56,11 @@ population::population(){
 
 void population::learn(T foot_size) {
     for(int i = 0; i < num; i++) {
-        ref[i].mutate(foot_size);
+        trial[i].mutate(foot_size);
         trial[i].calTotalScore(layers, data);
         
-        if(ref[i].score < trial[i].score) {
+        if(ref[i].score > trial[i].score) {
             ref[i].copy(trial[i]);
-        }
-        if(ref[i].score > max_score) {
-            max_score = ref[i].score;
         }
     }
 }

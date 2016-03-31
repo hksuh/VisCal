@@ -283,7 +283,7 @@ void mat3::init(const unsigned int n0, const unsigned int n1, const unsigned int
 }
 
 mat3::~mat3() {
-	unsigned int i;
+	unsigned int i, j;
 	for (i = 0; i < size[0]; i++) {
 		for (j = 0; j < size[1]; j++){
 			delete[] elem[i][j];
@@ -328,12 +328,12 @@ void mat3::setConst(T constant){
 	}
 }
 
-void mat2::mutate(T _foot){
+void mat3::mutate(T _foot){
 	for (int i = 0; i < size[0]; i++){
 		for (int j = 0; j < size[1]; j++){
 			for (int k = 0; k < size[2]; k++){
 				if (!(rand() % 10)){
-					elem[i][j] += _foot*((double)rand() / (double)RAND_MAX - 0.5);
+					elem[i][j][k] += _foot*((double)rand() / (double)RAND_MAX - 0.5);
 				}
 			}
 		}

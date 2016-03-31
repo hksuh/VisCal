@@ -1,6 +1,16 @@
 #include "layers.h"
 #include <math.h>
 
+totalLayer::totalLayer() {
+    frontL = nullptr;
+    rearL = nullptr;
+}
+
+totalLayer::~totalLayer() {
+    delete[] frontL;
+    delete[] rearL;
+}
+
 void flatten(const channelLayer2& _input, layer1& _output) {
     int i;
     for(i = 0; i < _input->size[0]; i++) {

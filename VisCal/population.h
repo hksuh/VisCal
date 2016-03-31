@@ -19,7 +19,7 @@ class population{
     unsigned int* size_rearL;
     
     /* laysers */
-    struct totalLayer layers;
+    totalLayer layers;
     
     /* individuals */
     indiv * ref;

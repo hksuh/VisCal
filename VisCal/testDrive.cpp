@@ -66,7 +66,7 @@ int mutation_testDrive(){
 	cout << "prob of mut (should be 0.1):"<<count / (100000.*num*num) << endl;
 
 	cout << "==========test krnl setConst , mutate==========" << endl;
-
+/*
 	krnl b(num, num);
 
 	b.setConst(1);
@@ -92,6 +92,7 @@ int mutation_testDrive(){
 	cout << "example table of mutation" << endl;
 	b.print();
 	cout << "prob of mut (should be 0.1):" << count / (100000.*num*num) << endl;
+ */
 
 	cout << "==========test conn setConst , mutate==========" << endl;
 

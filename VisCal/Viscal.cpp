@@ -28,8 +28,7 @@ int multiThread(){
 
 int main(){
     srand((unsigned int)time(nullptr));
-    
-	//return mutation_testDrive();
+
 	return copy_testDrive();
-	return 0;
+	//return 0;
 }
