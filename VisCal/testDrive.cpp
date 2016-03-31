@@ -230,3 +230,30 @@ int getNext_testDrive() {
 int prefix_kernel_testDrive() {
     return 0;
 }
+
+int indiv_testDrive() {
+    //unsigned int size_front[2][2] = { {2, 2}, {1, 1} };
+    
+    unsigned int **size_front = new unsigned int*[2];
+    size_front[0] = new unsigned int[3];
+    size_front[1] = new unsigned int[3];
+    size_front[0][0] = 2;
+    size_front[0][1] = 2;
+    size_front[0][2] = 2;
+    size_front[1][0] = 2;
+    size_front[1][1] = 2;
+    size_front[1][2] = 2;
+    
+    unsigned int *size_rear = new unsigned int[3];
+    size_rear[0] = 3;
+    size_rear[1] = 2;
+    size_rear[2] = 1;
+    indiv a = indiv((unsigned int)2, (unsigned int)3, size_front, size_rear);
+    cout << a.size_frontL[0][0] << endl;
+    a.krnls[0][0].init(1, 2, 3);
+    a.krnls[0][0].setConst(1);
+    a.krnls[0][0].print();
+    //a.conns[0].print();
+    
+    return 0;
+}

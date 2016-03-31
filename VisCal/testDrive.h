@@ -24,3 +24,7 @@ int copy_testDrive();
 int getNext_testDrive();
 
 int prefix_kernel_testDrive();
+
+int indiv_testDrive();
+
+int pop_testDrive();

@@ -31,6 +31,7 @@ int main(){
 
 	//return mutation_testDrive();
     //return copy_testDrive();
-    return getNext_testDrive();
+    //return getNext_testDrive();
+    return indiv_testDrive();
 	//return 0;
 }

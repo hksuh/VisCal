@@ -23,10 +23,23 @@ void indiv::init(unsigned int _depthF, unsigned int _depthR, unsigned int** _siz
 	depthF = _depthF;
 	krnls = new krnl*[depthF];
 	size_frontL = _size_frontL;
+    
 	for (int i = 0; i < depthF; i++){
 		krnls[i] = new krnl[size_frontL[i][0]];
-		//for loop should be made after we set kernel
+     //   for(int j = 0; j < size_frontL[i][0]; i++) {
+            // krnls[i][j].init();
 	}
+    
+    for (int j = 0; j < size_frontL[0][0]; j++) {
+        krnls[0][j].init(1, 32, 32);
+    }
+    
+    for (int i = 1; i < depthF; i++) {
+        for (int j = 0; j < size_frontL[i][0]; j++) {
+            // shit
+        }
+    }
+    
 	depthR = _depthR;
 	size_rearL = _size_rearL;
 	conns = new conn[depthR]; 
