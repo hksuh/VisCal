@@ -46,23 +46,83 @@ population::population(){
     }
     
     /* import training data */
-    data = txtIn();
+    //data = txtIn
+    //data = txtIn(<#char *name#>, <#unsigned int numOfInput#>, <#unsigned int input_lenx#>, <#unsigned int input_leny#>, <#unsigned int outputSize#>)
 }
 
-void population::learn() {
+void population::learn(T foot_size) {
     for(int i = 0; i < num; i++) {
-        // ref[i].mutate(&trial[i]);  // mutate 확인 못함
+        ref[i].mutate(foot_size);
         ref[i].calTotalScore(layers, data);
         trial[i].calTotalScore(layers, data);
         
         if(ref[i].score < trial[i].score) {
-            //copy trial[i] to ref[i]
+            trial[i].copy(ref[i]);
         }
     }
 }
 
-void population::learn(unsigned int n) {
+void population::learn(unsigned int n, T foot_size) {
     for(int i = 0; i < n; i++) {
-        learn();
+        learn(foot_size);
+    }
+}
+
+int population::shell() {
+    char command;
+    char yes_no;
+    int number;
+    T foot_size;
+    int from, to;
+    bool saved = false;
+    
+    while(1) {
+        cout << "learn(l) / open(o) / save(s) / copy(c) / quit(q)" << endl;
+        command = getchar();
+        switch(command) {
+            case 'l':               // learning
+                cout << "number of mutation trial : ";
+                cin >> number;
+                cout << "size of mutation foot size : ";
+                cin >> foot_size;
+                learn(number);
+                saved = false;
+                
+            case 'o':               //  open
+                // ???
+                saved = true;
+                
+            case 's':               //  save
+                // ???
+                saved = true;
+                
+            case 'c':               //  copy
+                cout << "copy from : ";
+                cin >> from;
+                cout << "copy to : ";
+                cin >> to;
+                ref[from].copy(ref[to]);
+                saved = false;
+                
+            case 'q':
+                if(saved) {
+                    break;
+                }
+                else {
+                    cout << "quit without save?";
+                    yes_no = getchar();
+                    if(yes_no == 'y') {
+                        break;
+                    }
+                    else if(yes_no == 'n') {
+                        continue;
+                    }
+                    else
+                        cout << "invalid input" << endl;
+                }
+                
+            default:
+                cout << "invalid input" << endl;
+        }
     }
 }

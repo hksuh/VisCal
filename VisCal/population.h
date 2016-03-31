@@ -7,8 +7,9 @@ class population{
     population();
     ~population();
     
-    void learn();
-    void learn(unsigned int);
+    void learn(T);
+    void learn(unsigned int, T);
+    int shell();
     
     /* size infos */
     int num;
