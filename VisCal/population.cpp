@@ -1,5 +1,8 @@
 #include "population.h"
 
+#define LEARN_NUM 1000
+#define PROGRESS_DIV 20
+
 population::population(){
     /* initialize size information*/
     num = 30;
@@ -29,17 +32,16 @@ population::population(){
     layers.frontL = new channelLayer2[depthF];
     layers.rearL = new layer1[depthR];
     
-    
-    /* training datas */
+    /* training datas
     int readChL2(ifstream& _file, channelLayer2& _target);
     int readL1(ifstream& _file, layer1& _target);
+    */
     
     /* make individuals */
     ref = new indiv[num];
     trial = new indiv[num];
     
 	indiv initIndiv;
-	foot = 0.3;
 
     for (int i = 0; i < num; i++){
         ref[i].init(depthF,depthR,size_frontL,size_rearL);
@@ -48,8 +50,8 @@ population::population(){
 		trial[i].copy(initIndiv);
     }
     
-    /* import training data */
-    //data = txtIn
+    /* maximum score for progress checking */
+    max_score = 0;
 }
 
 void population::learn(T foot_size) {
@@ -59,15 +61,42 @@ void population::learn(T foot_size) {
         
         if(ref[i].score < trial[i].score) {
             ref[i].copy(trial[i]);
-            cout << "ref[" << i << "]:" << ref[i].score << endl;
+        }
+        if(ref[i].score > max_score) {
+            max_score = ref[i].score;
         }
     }
 }
 
 void population::learn(unsigned int n, T foot_size) {
-    for(int i = 0; i < n; i++) {
-        learn(foot_size);
+    int i, j, k;
+    int unit = n/PROGRESS_DIV;
+    int progress;
+    
+    /* start with same individuals */
+    for(i = 0; i < num; i++) {
+        trial[i].copy(ref[i]);
     }
+    
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < LEARN_NUM; j++) {
+            learn(foot_size);
+        }
+        
+        /* draw progress bar */
+        if((i % unit) == 0) {
+            progress = i/unit;
+            printf("\r[");
+            for(k = 0; k < progress; k++) {
+                printf("-");
+            }
+            for(; k < PROGRESS_DIV; k++) {
+                printf(" ");
+            }
+            printf("] %d%% || max score : %f", progress, max_score);
+        }
+    }
+    cout << endl;
 }
 
 int population::shell() {
@@ -77,9 +106,17 @@ int population::shell() {
     T foot_size;
     int from, to;
     bool saved = false;
+    //bool opened = false;
+    ifstream inFile("data.txt");
+    
+    cout << "open(o) / save(s) / quit(q)" << endl;
+    cout << "learn(l) / copy(c) / modify(m)" << endl;
+    cout << "help(h) shows this message" << endl;
     
     while(1) {
-        cout << "learn(l) / open(o) / save(s) / copy(c) / quit(q)" << endl;
+
+        cout << "VisCal>> ";
+        
         command = getchar();
         switch(command) {
             case 'l':               // learning
@@ -87,13 +124,16 @@ int population::shell() {
                 cin >> number;
                 cout << "size of mutation foot size : ";
                 cin >> foot_size;
-                learn(number);
+                learn(number, foot_size);
                 saved = false;
-                
+            /*
             case 'o':               //  open
-                // ???
-                saved = true;
-                
+                if(opened)
+                    cout << "file is already opened";
+                else
+                    
+                    saved = true;
+            */
             case 's':               //  save
                 // ???
                 saved = true;
@@ -105,6 +145,11 @@ int population::shell() {
                 cin >> to;
                 ref[from].copy(ref[to]);
                 saved = false;
+                
+            case 'm':
+                cout << "modify index : ";
+                cin >> to;
+                //ref[to].copy(initIndiv); /////////????????????
                 
             case 'q':
                 if(saved) {
@@ -122,6 +167,11 @@ int population::shell() {
                     else
                         cout << "invalid input" << endl;
                 }
+                
+            case 'h':
+                cout << "open(o) / save(s) / quit(q)" << endl;
+                cout << "learn(l) / copy(c) / modify(m)" << endl;
+                cout << "help(h) shows this message" << endl;
                 
             default:
                 cout << "invalid input" << endl;

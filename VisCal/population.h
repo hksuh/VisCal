@@ -27,5 +27,7 @@ class population{
     
     /* training data */
 	trainData data = txtIn();
-	double foot;
+    
+    /* auxiliary info */
+    T max_score;
 };
