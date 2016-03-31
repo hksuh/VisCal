@@ -1,5 +1,8 @@
 #include "visCal_File_IO.h"
 
+trainData& txtIn(){
+	return txtIn("TrainingList.txt", 20, 32, 32, 1);
+}
 trainData& txtIn(char* name, unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny,unsigned int outputSize){
 	trainData * re = new trainData(numOfInput,input_lenx,input_leny,outputSize);
 	trainData &testImg = *re;
