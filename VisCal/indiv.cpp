@@ -48,6 +48,7 @@ indiv::~indiv(){
 		delete[] krnls[i];
 	}
 	delete[] size_frontL;
+	delete[] krnls;
 	delete[] size_rearL;
 }
 
@@ -81,9 +82,77 @@ void indiv::calTotalScore(totalLayer& _layers, const trainData& _trainData){
 		calScore(_layers, _trainData, i);
 	}
 };
-//void rand(){
-	
-//};
-void mutate();
+
+void indiv::rand(){
+	for (int i = 0; i < depthF; i++){
+		for (int j = 0; j < size_frontL[i][0]; j++){
+			krnls[i][j].random();
+		}
+	}
+	for (int i = 0; i < depthR; i++){
+		conns[i].random();
+		thsds[i].random();
+	}
+};
+
+void indiv::copy(const indiv& _ref){
+	for (int i = 0; i < depthF; i++){
+		for (int j = 0; j < size_frontL[i][0]; j++){
+			krnls[i][j].copy(_ref.krnls[i][j]);
+		}
+	}
+	for (int i = 0; i < depthR; i++){
+		conns[i].copy(_ref.conns[i]);
+		thsds[i].copy(_ref.thsds[i]);
+	}
+}
+
+indiv& indiv::operator=(const indiv& _ref){
+	this->~indiv();
+	init(_ref.depthF, _ref.depthR, _ref.size_frontL, _ref.size_rearL);
+	copy(_ref);
+	return *this;
+}
+
+void indiv::mutate(T _foot){
+	mutate(_foot, 1);
+	mutate(_foot, 2);
+}
+
+void indiv::mutate(T _foot, int typenumber){
+	//1:mutate kernel(front Layer)
+	//2:mutate rear Layer
+	//3:mutate conn
+	//4:mutate thsd
+	switch (typenumber)
+	{
+	case 1:
+		for (int i = 0; i < depthF; i++){
+			for (int j = 0; j < size_frontL[i][0]; j++){
+				krnls[i][j].mutate(_foot);
+			}
+		}
+		break;
+	case 2:
+		for (int i = 0; i < depthR; i++){
+			conns[i].mutate(_foot);
+			thsds[i].mutate(_foot);
+		}
+		break;
+	case 3:
+		for (int i = 0; i < depthR; i++){
+			conns[i].mutate(_foot);
+		}
+		break;
+	case 4:
+		for (int i = 0; i < depthR; i++){
+			thsds[i].mutate(_foot);
+		}
+		break;
+	default:
+		cout<<"indiv::mutate function typeNumber error";
+	}
+}
+
 string toStr();
 void show();

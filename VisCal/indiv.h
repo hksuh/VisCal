@@ -29,9 +29,11 @@ public:
 	void init(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL);
 	~indiv();
 
-	void copy();
+	indiv& operator=(const indiv& _ref);
+	void copy(const indiv& _ref);
 	void rand();
-	void mutate();
+	void mutate(T _foot);
+	void mutate(T _foot,int typenumber);
 	string toStr();
 	void show();
 };

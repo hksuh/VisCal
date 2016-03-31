@@ -16,3 +16,7 @@ int ptr_testDrive();
 int syntax_testDrive();
 
 int arraydel();
+
+int mutation_testDrive();
+
+int copy_testDrive();
