@@ -15,10 +15,66 @@ void conn::getNext(const layer1& _input, layer1& _target){
 }
 
 krnl::krnl(){};
-krnl::krnl(const unsigned int n0, const unsigned int n1) :mat2(n0, n1){};
+krnl::krnl(const unsigned int n0, const unsigned int n1, const unsigned int n2) :mat3(n0, n1, n2){};
 
 void krnl::getNext(const channelLayer2& _input, layer2& _target){
-	
+	int chN, i1N, i2N, j1N, j2N;
+	int ch, i1, i2, j1, j2;
+	chN = size[0];
+	i1N = _target.size[0];
+	j1N = _target.size[1];
+	i2N = size[1];
+	j2N = size[2];
+	double iter;
+
+	if (maxPool>1){
+		int i3, j3;
+		for (i1 = 0; i1 < i1N; i1++){
+			for (j1 = 0; j1 < j1N; j1++){
+				i3 = 0; j3 = 0;
+				iter = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter += elem[ch][i2][j2] * _input[ch][maxPool * i1 + i2 + i3][maxPool * j1 + j2 + j3];
+						}
+					}
+				}
+				_target[i1][j1] = iter;
+				j3++;
+				while (i3 < maxPool){
+					iter = 0;
+					for (ch = 0; ch < chN; ch++){
+						for (i2 = 0; i2 < i2N; i2++){
+							for (j2 = 0; j2 < j2N; j2++){
+								iter += elem[ch][i2][j2] * _input[ch][maxPool * i1 + i2 + i3][maxPool * j1 + j2 + j3];
+							}
+						}
+					}
+					if (iter>_target[i1][j1]){ _target[i1][j1] = iter; };
+					j3++;
+					if (j3 == maxPool){ j3 = 0; i3++; }
+				}
+				iter = 2 * _target[i1][j1] - thr;
+				_target[i1][j1] = tanh(iter);
+			}
+		}
+	}
+	else{
+		for (i1 = 0; i1 < i1N; i1++){
+			for (j1 = 0; j1 < j1N; j1++){
+				iter = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter += elem[ch][i2][j2] * _input[ch][i1 + i2][j1 + j2];
+						}
+					}
+				}
+				_target[i1][j1] = tanh(2*iter-thr);
+			}
+		}
+	}
 }
 
 thsd::thsd(){};

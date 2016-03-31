@@ -88,3 +88,22 @@ public:
 	void copy(const mat2&);
 	mat2& operator=(const mat2& ref);
 };
+
+class mat3 : public mat<T**> {
+public:
+	mat3();
+	mat3(const unsigned int, const unsigned int, const unsigned int);
+	virtual ~mat3();
+	void init(const unsigned int, const unsigned int, const unsigned int);
+	using mat<T**>::operator[];
+
+	void random();
+	void setConst(T);
+	void print();
+
+	void mutate(T);
+	void mutate(T, const unsigned int&, const unsigned int&, const unsigned int&);
+
+	void copy(const mat3&);
+	mat3& operator=(const mat3& ref);
+};
