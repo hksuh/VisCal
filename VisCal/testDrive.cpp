@@ -194,3 +194,11 @@ int arraydel(){
 
 	return 0;
 }
+
+int getNext_testDrive() {
+    krnl(<#const unsigned int#>, <#const unsigned int#>, <#const unsigned int#>)
+}
+
+int prefix_kernel_testDrive() {
+    
+}

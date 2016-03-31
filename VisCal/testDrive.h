@@ -20,3 +20,7 @@ int arraydel();
 int mutation_testDrive();
 
 int copy_testDrive();
+
+int getNext_testDrive();
+
+int prefix_kernel_testDrive();
