@@ -196,7 +196,34 @@ int arraydel(){
 }
 
 int getNext_testDrive() {
-    //krnl(<#const unsigned int#>, <#const unsigned int#>, <#const unsigned int#>)
+	conn a = conn(4, 3);
+	a.setConst(1);
+	a[0][1] = -1;
+	a[0][2] = 0.5;
+	a[1][0] = -1;
+	a[1][1] = -1;
+	layer1 b = layer1(3);
+	b[0] = 1;
+	b[1] = 2;
+	b[2] = 3;
+	layer1 c = layer1(4);
+	a.getNext(b, c);
+	cout << "a" << endl;
+	a.print();
+	cout << "b" << endl;
+	b.print();
+	cout << "c = a X b" << endl;
+	c.print();
+
+	thsd d = thsd(4);
+	d.setConst(1);
+	cout << "thsd d" << endl;
+	d.print();
+	cout << "get next >>>" << endl;
+	d.getNext(c);
+	c.print();
+
+
 	return 0;
 }
 
@@ -287,4 +314,33 @@ int prefix_kernel_testDrive() {
 
 	cout <<a3[1][8][7] << endl;
 	return 0;
+    
+}
+
+
+int indiv_testDrive() {
+    //unsigned int size_front[2][2] = { {2, 2}, {1, 1} };
+    
+    unsigned int **size_front = new unsigned int*[2];
+    size_front[0] = new unsigned int[3];
+    size_front[1] = new unsigned int[3];
+    size_front[0][0] = 2;
+    size_front[0][1] = 2;
+    size_front[0][2] = 2;
+    size_front[1][0] = 2;
+    size_front[1][1] = 2;
+    size_front[1][2] = 2;
+    
+    unsigned int *size_rear = new unsigned int[3];
+    size_rear[0] = 3;
+    size_rear[1] = 2;
+    size_rear[2] = 1;
+    indiv a = indiv((unsigned int)2, (unsigned int)3, size_front, size_rear);
+    cout << a.size_frontL[0][0] << endl;
+    a.krnls[0][0].init(1, 2, 3);
+    a.krnls[0][0].setConst(1);
+    a.krnls[0][0].print();
+    //a.conns[0].print();
+    
+    return 0;
 }

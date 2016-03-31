@@ -294,17 +294,19 @@ mat3::~mat3() {
 }
 
 void mat3::print() {
-	int i, j;
-	printf("[");
-	for (i = 0; i < size[0] - 1; i++) {
-		for (j = 0; j <size[1]; j++)
-			printf("%f, ", elem[0][i][j]);
-		printf("\n");
-	}
-	for (j = 0; j <size[1] - 1; j++)
-		printf("%f, ", elem[0][i][j]);
-
-	printf("%f]\n", elem[size[0] - 1][size[1] - 1]);
+    int h, i, j;
+    for (h = 0; h < size[0]; h++)
+    {
+        printf("[");
+        for (i = 0; i < size[1] - 1; i++) {
+            for (j = 0; j <size[2]; j++)
+                printf("%f, ", elem[h][i][j]);
+            printf("\n");
+        }
+        for (j = 0; j <size[2] - 1; j++)
+            printf("%f, ", elem[h][i][j]);
+        printf("%f]\n", elem[h][size[1] - 1][size[2] - 1]);
+    }
 }
 
 void mat3::random() {
