@@ -30,6 +30,7 @@ int main(){
     srand((unsigned int)time(nullptr));
 
 	//return mutation_testDrive();
-    return copy_testDrive();
+    //return copy_testDrive();
+    return getNext_testDrive();
 	//return 0;
 }

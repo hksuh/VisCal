@@ -196,9 +196,37 @@ int arraydel(){
 }
 
 int getNext_testDrive() {
-    krnl(<#const unsigned int#>, <#const unsigned int#>, <#const unsigned int#>)
+    conn a = conn(4, 3);
+    a.setConst(1);
+    a[0][1] = -1;
+    a[0][2] = 0.5;
+    a[1][0] = -1;
+    a[1][1] = -1;
+    layer1 b = layer1(3);
+    b[0] = 1;
+    b[1] = 2;
+    b[2] = 3;
+    layer1 c = layer1(4);
+    a.getNext(b, c);
+    cout << "a" << endl;
+    a.print();
+    cout << "b" << endl;
+    b.print();
+    cout << "c = a X b" << endl;
+    c.print();
+
+    thsd d = thsd(4);
+    d.setConst(1);
+    cout << "thsd d" << endl;
+    d.print();
+    cout << "get next >>>" << endl;
+    d.getNext(c);
+    c.print();
+    
+    
+    return 0;
 }
 
 int prefix_kernel_testDrive() {
-    
+    return 0;
 }
