@@ -351,3 +351,17 @@ int indiv_testDrive() {
 
     return 0;
 }
+
+int pop_testDrive(){
+	mat3 b = mat3();
+	mat3 c = mat3();
+	b.init(2, 2, 2);
+	c.init(2, 2, 2);
+	b.setConst(15);
+	c.copy(b);
+	c.print();
+	population a = population();
+	a.data = txtIn();
+	a.shell();
+	return 0;
+}

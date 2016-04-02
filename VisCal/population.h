@@ -5,7 +5,7 @@
 class population{
   public:
     population();
-    ~population();
+    //~population();
     
     void learn(T);
     void learn(unsigned int, T);
@@ -22,6 +22,7 @@ class population{
     totalLayer layers;
     
     /* individuals */
+	indiv init;
     indiv * ref;
     indiv * trial;
     
