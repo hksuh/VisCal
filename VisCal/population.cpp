@@ -8,6 +8,7 @@ population::population(){
     num = 30;
 
 	init.preset();
+	init.presetRead();
 
 	depthF = init.depthF;
 	depthR = init.depthR;
@@ -39,9 +40,11 @@ population::population(){
     trial = new indiv[num];
 
     for (int i = 0; i < num; i++){
-        ref[i].init(depthF,depthR,size_frontL,size_rearL);
+        //ref[i].init(depthF,depthR,size_frontL,size_rearL);
+		ref[i].preset();
 		ref[i].copy(init);
-        trial[i].init(depthF, depthR, size_frontL, size_rearL);
+        //trial[i].init(depthF, depthR, size_frontL, size_rearL);
+		trial[i].preset();
 		trial[i].copy(init);
     }
     

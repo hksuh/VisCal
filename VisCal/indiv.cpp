@@ -114,6 +114,10 @@ void indiv::preset(){
 	//readKrnl();
 }
 
+void indiv::presetRead(){
+	//readkrnl()
+}
+
 void indiv::calScore(totalLayer& _layers, const trainData& _trainData, int dataNum){
 	//_layers.frontL;
 	//_trainData.numOfData;

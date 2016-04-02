@@ -37,6 +37,7 @@ public:
 	~indiv();
 
 	void preset();
+	void presetRead();
 
 	void setConst(T);
 	indiv& operator=(const indiv& _ref);
