@@ -362,6 +362,7 @@ int pop_testDrive(){
 	c.print();
 	population a = population();
 	a.data = txtIn();
+	a.init.krnls[1][0].print();
 	a.shell();
 	return 0;
 }
