@@ -10,6 +10,13 @@ public:
 	void calTotalScore(totalLayer& _layers, const trainData& _trainData);
 	void calScore(totalLayer& _layers, const trainData& _trainData, int dataNum);
 
+	/*
+
+	DIMENSION SETTINGS
+	size_frontL=depthF
+	size_rearL=depthR+1
+
+	*/
 	//depth of frontal and rear part
 	unsigned int depthF,depthR;
 	//size_frontL[depth][*]={number of channels, x length, y length}
@@ -29,6 +36,10 @@ public:
 	void init(unsigned int _depthF, unsigned int _depthR, unsigned int** _size_frontL, unsigned int* _size_rearL);
 	~indiv();
 
+	void preset();
+	void presetRead();
+
+	void setConst(T);
 	indiv& operator=(const indiv& _ref);
 	void copy(const indiv& _ref);
 	void rand();

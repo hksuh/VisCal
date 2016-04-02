@@ -36,9 +36,54 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 	i2N = size[1];
 	j2N = size[2];
 	double iter;
+	double iter2;
 
 	if (maxPool>1){
-		int i3, j3;
+		for (i1 = 0; i1 < i1N; i1++){
+			for (j1 = 0; j1 < j1N; j1++){
+				iter = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							//cout << i1 << ";;;" << j1 << ";;;" << ch << ";;;" << i2 << ";;;" << j2 << endl;
+							iter += elem[ch][i2][j2] * _input[ch][2 * i1 + i2][2 * j1 + j2];
+						}
+					}
+				}
+				iter2 = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter2 += elem[ch][i2][j2] * _input[ch][2 * i1 + i2+1][2 * j1 + j2];
+						}
+					}
+				}
+				if (iter2>iter){ iter = iter2; }
+
+				iter2 = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter2 += elem[ch][i2][j2] * _input[ch][2 * i1 + i2 ][2 * j1 + j2 +1];
+						}
+					}
+				}
+				if (iter2>iter){ iter = iter2; }
+
+				iter2 = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter2 += elem[ch][i2][j2] * _input[ch][2 * i1 + i2 + 1][2 * j1 + j2+1];
+						}
+					}
+				}
+				if (iter2>iter){ iter = iter2; }
+
+				_target[i1][j1] = .5*(tanh(iter - thr) + 1.);
+			}
+		}
+/*		int i3, j3;
 		for (i1 = 0; i1 < i1N; i1++){
 			for (j1 = 0; j1 < j1N; j1++){
 				i3 = 0; j3 = 0;
@@ -65,10 +110,11 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 					j3++;
 					if (j3 == maxPool){ j3 = 0; i3++; }
 				}
-				iter = 2 * _target[i1][j1] - thr;
-				_target[i1][j1] = tanh(iter);
+				iter = _target[i1][j1] - thr;
+				_target[i1][j1] = .5*(tanh(iter)+1.);
 			}
 		}
+		*/
 	}
 	else{
 		for (i1 = 0; i1 < i1N; i1++){
@@ -81,7 +127,7 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 						}
 					}
 				}
-				_target[i1][j1] = tanh(2*iter-thr);
+				_target[i1][j1] = .5*(tanh(iter-thr)+1.);
 			}
 		}
 	}

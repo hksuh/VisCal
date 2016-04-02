@@ -6,31 +6,29 @@
 population::population(){
     /* initialize size information*/
     num = 30;
-    depthF = 2;
-    depthR = 3;
-    
-    /* set size information */
-    size_frontL = new unsigned int*[depthF];
-    size_rearL = new unsigned int[depthR+1];
 
-    for (int i = 0; i < depthF; i++) {
-        size_frontL[i] = new unsigned int[3];
-    }
-    size_frontL[0][0] = 16;
-    size_frontL[0][1] = 8;
-    size_frontL[0][2] = 8;
-    size_frontL[1][0] = 32;
-    size_frontL[1][1] = 1;
-    size_frontL[1][2] = 1;
-    
-    size_rearL[0] = size_frontL[depthF - 1][0];
-    size_rearL[1] = 6;
-    size_rearL[2] = 6;
-    size_rearL[3] = 1;
+	init.preset();
+	init.presetRead();
+
+	depthF = init.depthF;
+	depthR = init.depthR;
+	size_frontL = init.size_frontL;
+	size_rearL = init.size_rearL;
+
+	cout << size_frontL[0][1] << endl;
 
     /* make layers */
     layers.frontL = new channelLayer2[depthF];
+	for (int i = 0; i < depthF; i++){
+		layers.frontL[i] = new layer2[size_frontL[i][0]];
+		for (int j = 0; j < size_frontL[i][0]; j++){
+			layers.frontL[i][j].init(size_frontL[i][1], size_frontL[i][2]);
+		}
+	}
     layers.rearL = new layer1[depthR];
+	for (int i = 0; i < depthR; i++){
+		layers.rearL[i].init(size_rearL[i]);
+	}
     
     /* training datas
     int readChL2(ifstream& _file, channelLayer2& _target);
@@ -40,14 +38,14 @@ population::population(){
     /* make individuals */
     ref = new indiv[num];
     trial = new indiv[num];
-    
-	indiv initIndiv;
 
     for (int i = 0; i < num; i++){
-        ref[i].init(depthF,depthR,size_frontL,size_rearL);
-		ref[i].copy(initIndiv);
-        trial[i].init(depthF, depthR, size_frontL, size_rearL);
-		trial[i].copy(initIndiv);
+        //ref[i].init(depthF,depthR,size_frontL,size_rearL);
+		ref[i].preset();
+		ref[i].copy(init);
+        //trial[i].init(depthF, depthR, size_frontL, size_rearL);
+		trial[i].preset();
+		trial[i].copy(init);
     }
     
     /* maximum score for progress checking */

@@ -22,6 +22,7 @@ class population{
     totalLayer layers;
     
     /* individuals */
+	indiv init;
     indiv * ref;
     indiv * trial;
     
