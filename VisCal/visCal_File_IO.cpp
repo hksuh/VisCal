@@ -1,9 +1,11 @@
 #include "visCal_File_IO.h"
 
 trainData& txtIn(){
-	return txtIn("TrainingList.txt", 20, 32, 32, 1);
+    //const char *name = "TrainingList.txt";
+    const char *name = "/Users/namsan/Project/VisCal/VisCal/TrainingList.txt";
+	return txtIn(name, 20, 32, 32, 1);
 }
-trainData& txtIn(char* name, unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny,unsigned int outputSize){
+trainData& txtIn(const char* name, unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny,unsigned int outputSize){
 	trainData * re = new trainData(numOfInput,input_lenx,input_leny,outputSize);
 	trainData &testImg = *re;
 	testImg.checkInit();
@@ -45,7 +47,8 @@ trainData& txtIn(char* name, unsigned int numOfInput, unsigned int input_lenx, u
 int readChL2(ifstream& _file, channelLayer2& _target){
 	int i = 0, j = 0, k = 0;
 	double var;
-	_file >> var; if (var != -2){ return -2; };
+	_file >> var;
+    if (var != -2){ return -2; };
 	_file >> var;
 	while (var >= 0){
 		while (var >= 0){
@@ -70,7 +73,7 @@ int readChL2(ifstream& _file, channelLayer2& _target){
 int readL1(ifstream& _file, layer1& _target){
 	int i=0;
 	double var;
-	_file >> var; if (((int)(var - .5)) != -2){ return -2; };
+    _file >> var; if (((int)(var - .5)) != -2){ return -2; };
 	_file >> var;
 	while (var >= 0){
 		_target[i] = var;

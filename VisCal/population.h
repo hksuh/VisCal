@@ -5,7 +5,7 @@
 class population{
   public:
     population();
-    ~population();
+    //~population();
     
     void learn(T);
     void learn(unsigned int, T);

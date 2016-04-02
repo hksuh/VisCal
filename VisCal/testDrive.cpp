@@ -344,3 +344,10 @@ int indiv_testDrive() {
     
     return 0;
 }
+
+int pop_testDrive() {
+    population a = population();
+    a.shell();
+    
+    return 0;
+}
