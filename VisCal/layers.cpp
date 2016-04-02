@@ -65,8 +65,8 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 					j3++;
 					if (j3 == maxPool){ j3 = 0; i3++; }
 				}
-				iter = 2 * _target[i1][j1] - thr;
-				_target[i1][j1] = tanh(iter);
+				iter = 8. * (_target[i1][j1] - thr);
+				_target[i1][j1] = .5*(tanh(iter)+1.);
 			}
 		}
 	}
@@ -81,7 +81,7 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 						}
 					}
 				}
-				_target[i1][j1] = tanh(2*iter-thr);
+				_target[i1][j1] = .5*(tanh(8.*(iter-thr))+1.);
 			}
 		}
 	}
