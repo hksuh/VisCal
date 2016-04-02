@@ -1,6 +1,9 @@
 #include "indiv.h"
 
 indiv::indiv(){
+	size_frontL = nullptr;
+	size_rearL = nullptr;
+
 	krnls = nullptr;
 	conns = nullptr;
 	thsds = nullptr;
@@ -30,16 +33,6 @@ void indiv::init(unsigned int _depthF, unsigned int _depthR, unsigned int** _siz
             // krnls[i][j].init();
 	}
     
-    for (int j = 0; j < size_frontL[0][0]; j++) {
-        krnls[0][j].init(1, 32, 32);
-    }
-    
-    for (int i = 1; i < depthF; i++) {
-        for (int j = 0; j < size_frontL[i][0]; j++) {
-            // shit
-        }
-    }
-    
 	depthR = _depthR;
 	size_rearL = _size_rearL;
 	conns = new conn[depthR]; 
@@ -63,6 +56,62 @@ indiv::~indiv(){
 	delete[] size_frontL;
 	delete[] krnls;
 	delete[] size_rearL;
+}
+
+void indiv::preset(){
+	/* initialize size information*/
+	depthF = 3;
+	depthR = 3;
+
+	/* set size information */
+	size_frontL = new unsigned int*[depthF];
+	size_rearL = new unsigned int[depthR + 1];
+
+	for (int i = 0; i < depthF; i++) {
+		size_frontL[i] = new unsigned int[3];
+	}
+	size_frontL[0][0] = 8;
+	size_frontL[0][1] = 15;
+	size_frontL[0][2] = 15;
+	size_frontL[1][0] = 2;
+	size_frontL[1][1] = 12;
+	size_frontL[1][2] = 12;
+	size_frontL[2][0] = 2;
+	size_frontL[2][1] = 1;
+	size_frontL[2][2] = 1;
+
+
+	size_rearL[0] = size_frontL[depthF - 1][0];
+	size_rearL[1] = 3;
+	size_rearL[2] = 3;
+	size_rearL[3] = 1;
+
+	/* set conns, thsds */
+	init(3, 3, size_frontL, size_rearL);
+
+	/* init krnls */
+	int i = 0;
+	for (int j = 0; j < size_frontL[i][0]; j++){
+		krnls[i][j].init(1, 2, 2);
+		krnls[i][j].maxPool = 2;
+		krnls[i][j].thr = 0.3;
+	}
+
+	i = 1;
+	for (int j = 0; j < size_frontL[i][0]; j++){
+		krnls[i][j].init(size_frontL[i-1][0], 4, 4);
+	}
+	krnls[i][0].thr = 5.1;
+	krnls[i][0].thr = 5.7;
+
+	i = 2;
+	for (int j = 0; j < size_frontL[i][0]; j++){
+		krnls[i][j].init(size_frontL[i - 1][0], 4, 4);
+	}
+
+	setConst(0);
+
+	//readKrnl();
 }
 
 void indiv::calScore(totalLayer& _layers, const trainData& _trainData, int dataNum){
@@ -128,6 +177,18 @@ indiv& indiv::operator=(const indiv& _ref){
 	return *this;
 }
 
+void indiv::setConst(T constant){
+	for (int i = 0; i < depthF; i++){
+		for (int j = 0; j < size_frontL[i][0]; j++){
+			krnls[i][j].setConst(constant);
+		}
+	}
+	for (int i = 0; i < depthR; i++){
+		conns[i].setConst(constant);
+		thsds[i].setConst(constant);
+	}
+}
+
 void indiv::mutate(T _foot){
 	mutate(_foot, 1);
 	mutate(_foot, 2);
@@ -169,4 +230,5 @@ void indiv::mutate(T _foot, int typenumber){
 }
 
 string toStr();
+
 void show();

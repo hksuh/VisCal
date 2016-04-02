@@ -319,6 +319,12 @@ int prefix_kernel_testDrive() {
 
 
 int indiv_testDrive() {
+
+	indiv a = indiv();
+	a.preset();
+	a.krnls[1][1].print();
+
+	/* Written by Taewook
     //unsigned int size_front[2][2] = { {2, 2}, {1, 1} };
     
     unsigned int **size_front = new unsigned int*[2];
@@ -341,6 +347,7 @@ int indiv_testDrive() {
     a.krnls[0][0].setConst(1);
     a.krnls[0][0].print();
     //a.conns[0].print();
-    
+    */
+
     return 0;
 }
