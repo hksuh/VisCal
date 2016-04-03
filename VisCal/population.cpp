@@ -1,7 +1,7 @@
 #include "population.h"
 
-#define LEARN_NUM 100
-#define PROGRESS_DIV 20
+#define LEARN_NUM 10
+#define PROGRESS_DIV 1
 
 population::population(){
     /* initialize size information*/
@@ -121,6 +121,7 @@ int population::shell() {
                 cin >> foot_size;
                 learn(number, foot_size);
                 saved = false;
+                break;
             /*
             case 'o':               //  open
                 if(opened)
@@ -132,6 +133,7 @@ int population::shell() {
             case 's':               //  save
                 // ???
                 saved = true;
+                break;
                 
             case 'c':               //  copy
                 cout << "copy from : ";
@@ -140,11 +142,13 @@ int population::shell() {
                 cin >> to;
                 ref[from].copy(ref[to]);
                 saved = false;
+                break;
                 
             case 'm':
                 cout << "modify index : ";
                 cin >> to;
                 //ref[to].copy(initIndiv); /////////????????????
+                break;
                 
             case 'q':
                 if(saved) {
@@ -162,11 +166,13 @@ int population::shell() {
                     else
                         cout << "invalid input" << endl;
                 }
+                break;
                 
             case 'h':
                 cout << "open(o) / save(s) / quit(q)" << endl;
                 cout << "learn(l) / copy(c) / modify(m)" << endl;
                 cout << "help(h) shows this message" << endl;
+                break;
                 
             default:
                 cout << "invalid input" << endl;
