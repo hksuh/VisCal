@@ -338,10 +338,27 @@ int indiv_testDrive() {
 		layers.rearL[i].init(a.size_rearL[i]);
 	}
 
-	trainData b = txtIn();
-	a.calTotalScore(layers, b);
-	cout << a.score << endl;
+	clock_t time_a = clock();
 
+	trainData b = txtIn();
+	clock_t time_b = clock();
+
+	a.calScore(layers, b, 0);
+	//layers.frontL[0][0].print();
+	cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
+	clock_t time_c = clock();
+	
+	for (int i = 0; i < 10; i++){
+		a.calTotalScore(layers, b);
+		cout << a.score << endl;
+		a.mutate(0.1);
+	}
+	
+	clock_t time_d = clock();
+
+	cout << "a to b: " << ((double)(time_b - time_a)) / CLOCKS_PER_SEC << endl;
+	cout << "b to c: " << ((double)(time_c - time_b)) / CLOCKS_PER_SEC << endl;
+	cout << "c to d: " << ((double)(time_d - time_c)) / CLOCKS_PER_SEC << endl;
     return 0;
 }
 

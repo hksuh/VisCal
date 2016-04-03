@@ -304,8 +304,8 @@ void indiv::presetRead(){
 	krnls[1][0][7][3][2] = 0.;
 	krnls[1][0][7][3][3] = 0.;
 
-	krnls[1][0].thr = 5.7;
-	krnls[1][0].maxPool = 0;
+	krnls[1][1].thr = 5.7;
+	krnls[1][1].maxPool = 0;
 	krnls[1][1][0][0][0] = -3.2;
 	krnls[1][1][0][0][1] = -3.2;
 	krnls[1][1][0][0][2] = -3.2;
