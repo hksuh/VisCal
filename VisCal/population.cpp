@@ -1,7 +1,7 @@
 #include "population.h"
 
-#define LEARN_NUM 1
-#define PROGRESS_DIV 1
+#define LEARN_NUM 10
+#define PROGRESS_DIV 10
 
 population::population(){
     /* initialize size information*/
@@ -51,7 +51,7 @@ population::population(){
     }
     
     /* maximum score for progress checking */
-    max_score = 0;
+    best_score = numeric_limits<double>::infinity();
 }
 
 void population::learn(T foot_size) {
@@ -61,6 +61,7 @@ void population::learn(T foot_size) {
         
         if(ref[i].score > trial[i].score) {
             ref[i].copy(trial[i]);
+            ref[i].score = trial[i].score;
         }
     }
 }
@@ -70,19 +71,33 @@ void population::learn(unsigned int n, T foot_size) {
     int unit = n/PROGRESS_DIV;
     int progress;
     
-    /* start with same individuals */
-    for(i = 0; i < num; i++) {
-        trial[i].copy(ref[i]);
+    printf("[");
+    for(k = 0; k < PROGRESS_DIV; k++) {
+        printf(" ");
     }
+    printf("]   0%%");
+    fflush(stdout);
     
     for(i = 0; i < n; i++) {
+        /* start with same individuals */
+        for(j = 0; j < num; j++) {
+            trial[j].copy(ref[j]);
+        }
+        
         for(j = 0; j < LEARN_NUM; j++) {
             learn(foot_size);
         }
         
+        /* update best score for progress print */
+        for(j = 0; j < num; j++) {
+            if(best_score > ref[j].score) {
+                best_score = ref[j].score;
+            }
+        }
+        
         /* draw progress bar */
         if((i % unit) == 0) {
-            progress = i/unit;
+            progress = i/unit + 1;
             printf("\r[");
             for(k = 0; k < progress; k++) {
                 printf("-");
@@ -90,31 +105,20 @@ void population::learn(unsigned int n, T foot_size) {
             for(; k < PROGRESS_DIV; k++) {
                 printf(" ");
             }
-            printf("] %d%% || max score : %f", progress, max_score);
+            printf("] %3d%% || best score : %.10f", progress, best_score);
+            fflush(stdout);
         }
     }
     cout << endl;
 }
 
-void population::learnTemp(unsigned int n, T foot_size) {
-	int i = 0;
-
-	/* start with same individuals */
-	for (i = 0; i < num; i++) {
-		trial[i].copy(ref[i]);
-	}
-
-	for (i = 0; i < n; i++) {
-		learn(foot_size);
-		if (i % 30 == 0){
-			//print result temporary part
-			for (int qw = 0; qw < num; qw++){
-				ref[qw].calTotalScore(layers, data);
-				cout << "[" << qw << "] : " << ref[qw].score << endl;
-			}
-			//
-		}
-	}
+void population::print() {
+    cout << "Current Scores" << endl;
+    
+    for(int i = 0; i < num; i++) {
+        printf("ref %d : %.10lf\n", i, ref[i].score);
+        fflush(stdout);
+    }
 }
 
 int population::shell() {
@@ -128,7 +132,7 @@ int population::shell() {
     ifstream inFile("data.txt");
     
     cout << "open(o) / save(s) / quit(q)" << endl;
-    cout << "learn(l) / copy(c) / modify(m)" << endl;
+    cout << "learn(l) / print(p) / copy(c) / modify(m)" << endl;
     cout << "help(h) shows this message" << endl;
     
     while(1) {
@@ -142,9 +146,13 @@ int population::shell() {
                 cin >> number;
                 cout << "size of mutation foot size : ";
                 cin >> foot_size;
-                //learn(number, foot_size);
-				learnTemp(number, foot_size);
+                learn(number, foot_size);
+				//learnTemp(number, foot_size);
                 saved = false;
+                break;
+                
+            case 'p':
+                print();
                 break;
             /*
             case 'o':               //  open
@@ -176,13 +184,13 @@ int population::shell() {
                 
             case 'q':
                 if(saved) {
-                    break;
+                    return 0;
                 }
                 else {
                     cout << "quit without save?";
                     yes_no = getchar();
                     if(yes_no == 'y') {
-                        break;
+                        return 0;
                     }
                     else if(yes_no == 'n') {
                         continue;

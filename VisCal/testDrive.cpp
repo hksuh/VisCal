@@ -359,9 +359,9 @@ int indiv_testDrive() {
 		layers.rearL[3].print();
 		cout << "-----------" << endl;
 	}
-	//a.calScore(layers, b, 0);
-	//layers.frontL[1][1].print();
-	//cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
+	a.calScore(layers, b, 0);
+	layers.frontL[1][1].print();
+	cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
 	clock_t time_c = clock();
 	
 	for (int i = 0; i < 10; i++){

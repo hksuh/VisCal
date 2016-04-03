@@ -43,6 +43,8 @@ void indiv::init(unsigned int _depthF, unsigned int _depthR, unsigned int** _siz
 	for (int i = 0; i < depthR; i++){
 		thsds[i].init(size_rearL[i+1]);
 	}
+    
+    score = numeric_limits<T>::infinity();
 };
 
 indiv::~indiv(){
