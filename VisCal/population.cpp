@@ -25,8 +25,8 @@ population::population(){
 			layers.frontL[i][j].init(size_frontL[i][1], size_frontL[i][2]);
 		}
 	}
-    layers.rearL = new layer1[depthR];
-	for (int i = 0; i < depthR; i++){
+    layers.rearL = new layer1[depthR+1];
+	for (int i = 0; i < depthR+1; i++){
 		layers.rearL[i].init(size_rearL[i]);
 	}
     
