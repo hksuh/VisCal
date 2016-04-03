@@ -1,8 +1,14 @@
 #include <iostream>
+#include "population.h"
+#include "visCal_File_IO.h"
 #include "matrix.h"
+#include "layers.h"
 #include <thread>
+#include "testDrive.h"
 
 using namespace std;
+
+//population popul;
 
 int drive1(unsigned int threadNum){ return 0; }
 
@@ -19,40 +25,16 @@ int multiThread(){
 	return 0;
 }
 
-int testDrive(){
- 
-    mat1 a(4);
-    mat2 b(4,5);
-    mat3 c(4,5,7);
-    mat4 d(6, 3, 12, 3);
-    a.random();
-    cout <<"mat1";
-    a.print();
-    
-    b.random();
-    cout <<"mat2";
-    b.print();
-    
-    c.random();
-    cout <<"mat3";
-    c.print();
-    
-    d.random();
-    cout <<"mat4";
-    d.print();
-    
-    return 0;
-}
-
-
-using namespace std;
 
 int main(){
-        srand((unsigned int)time(nullptr));
-	int a;
-	cout << "HEloow Wolrd;";
-	cin >> a;
-	cout << "you t" << endl;
+    srand((unsigned int)time(nullptr));
 
-	return testDrive();
+    return pop_testDrive();
+	//return mutation_testDrive();
+	//return prefix_kernel_testDrive();
+    //return copy_testDrive();
+    //return getNext_testDrive();
+   // return indiv_testDrive();
+
+	//return 0;
 }

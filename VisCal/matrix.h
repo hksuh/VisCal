@@ -1,7 +1,8 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-
+#include <iostream>
+#pragma once
 using namespace std;
 
 // vector 자료형 상속을 이용하여 다차원 행렬과 그에 필요한 연산구현
@@ -23,118 +24,86 @@ typedef double T;
 /* toStr : 원소정보들을 string으로 변환한다. file I/O와 show 함수에 사용된다.*/
 /* show : toStr을 이용하여 객체의 변수정보들을 출력한다*/
 
+
 /* Abstract Class for matrix 
  * 
  *
  */
+
+template <typename U> 
 class mat{
   public:
-    virtual ~mat() = 0;
-    T* elem;
-    unsigned int size;
+	mat(const unsigned int);
+	virtual ~mat();
+    U * elem;
+	const int dim;
+    unsigned int* size;
     
     /* common method */
-    void add(const mat&, const mat&);
+  //  void set(int*, T);
+    //    void mutate(T);
     void random();
-    
-    /* abstract method */
-    virtual void print() = 0;
+
+
+	U& operator[](int index){return elem[index];}
+
 };
 
-class mat1 {
-  public:
-    T* elem;
-    unsigned int size;
-    
-    mat1(const unsigned int);
-    ~mat1();
-    
-    void add(const mat1&, const mat1&);
+class mat1 : public mat<T>{
+public:
+	mat1();
+	mat1(const unsigned int);
+	virtual ~mat1();
+	void init(const unsigned int);
+	using mat<T>::operator[];
+
     void random();
+	void setConst(T);
     void print();
+
+	void mutate(T);
+	void mutate(T, const unsigned int&);
+
+	void copy(const mat1&);
+	mat1& operator=(const mat1& ref);
 };
 
-class mat2 {
-  public:
-    T** elem;
-    unsigned int size_m, size_n;
-    unsigned int size;
-    
+class mat2 : public mat<T*> {
+public:
+	mat2();
     mat2(const unsigned int, const unsigned int);
-    ~mat2();
-    
-    void add(const mat2&, const mat2&);
-    void random();
-    void print();
-};
+    virtual ~mat2();
+	void init(const unsigned int, const unsigned int);
+	using mat<T*>::operator[];
 
-class mat3 {
-public:
-    T*** elem;
-    unsigned int size_l, size_m, size_n;
-    unsigned int size;
-    
-    mat3(const unsigned int, const unsigned int, const unsigned int);
-    ~mat3();
-    
-    void add(const mat3&, const mat3&);
-    void random();
-    void print();
-};
+	void product(const mat1& _input, mat1& _target);
 
-class mat4 {
-public:
-    T**** elem;
-    unsigned int size_k, size_l, size_m, size_n;
-    unsigned int size;
-    
-    mat4(const unsigned int, const unsigned int, const unsigned int, const unsigned int);
-    ~mat4();
-    
-    void add(const mat4&, const mat4&);
-    void random();
-    void print();
-};
-/*
-	mat1():vector<T>(){}
-	mat1(size_t _n,T _init):vector<T>(_n,_init){}
+	void random();
+	void setConst(T);
+	void print();
 
-	void add(const mat1& _a, const mat1& _b){}
-*/
-	/* flatten : 2차원이상의 행렬의 원소들을 일렬로 펼쳐서 1차원행렬(column vector)로 만든다.*/
-    /*
-	void flatten();
+	void mutate(T);
+	void mutate(T, const unsigned int&, const unsigned int&);
 	
-	void copy();
-	string toStr();
-	void show();
-    */
-
-//void mat1::show(){/*이런식으로 cpp파일에 함수 내용물 구현*/};
-/*
-class mat2 : public vector<mat1>{
-public:
-    mat2();
-   */
-    /*
-	mat2() :vector<mat1>(){}
-	mat2(size_t _n, mat1 _init) :vector<mat1>(_n, _init){}
-*/
-	/*thsd를 이용하여 각각의 원소값에 sigmoid함수를 취하여 0~1사이 실수로 만든다.*/
-//	void sigmoid(const mat2& _thsd);
-
-	/*input 열벡터에 현재행렬을 곱한 결과를 target 열벡터에 저장한다.*/
-//	void product(const mat1& _input, mat1& _target);
-	/*
-	void add();
-	void copy();
-	string toStr();
-	void show();
+	void copy(const mat2&);
+	mat2& operator=(const mat2& ref);
 };
 
-class mat3{};
+class mat3 : public mat<T**> {
+public:
+	mat3();
+	mat3(const unsigned int, const unsigned int, const unsigned int);
+	virtual ~mat3();
+	void init(const unsigned int, const unsigned int, const unsigned int);
+	using mat<T**>::operator[];
 
-class mat4{};
+	void random();
+	void setConst(T);
+	void print();
 
-class mat5{};
-*/
+	void mutate(T);
+	void mutate(T, const unsigned int&, const unsigned int&, const unsigned int&);
+
+	void copy(const mat3&);
+	mat3& operator=(const mat3& ref);
+};
