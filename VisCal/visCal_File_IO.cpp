@@ -1,8 +1,8 @@
 #include "visCal_File_IO.h"
 
 trainData& txtIn(){
-    //const char *name = "TrainingList.txt";
-    const char *name = "/Users/namsan/Project/VisCal/VisCal/TrainingList.txt";
+    const char *name = "TrainingList.txt";
+    //const char *name = "/Users/namsan/Project/VisCal/VisCal/TrainingList.txt";
 	return txtIn(name, 20, 32, 32, 1);
 }
 trainData& txtIn(const char* name, unsigned int numOfInput, unsigned int input_lenx, unsigned int input_leny,unsigned int outputSize){

@@ -322,32 +322,25 @@ int indiv_testDrive() {
 
 	indiv a = indiv();
 	a.preset();
+	a.presetRead();
 	a.krnls[1][1].print();
 
-	/* Written by Taewook
-    //unsigned int size_front[2][2] = { {2, 2}, {1, 1} };
-    
-    unsigned int **size_front = new unsigned int*[2];
-    size_front[0] = new unsigned int[3];
-    size_front[1] = new unsigned int[3];
-    size_front[0][0] = 2;
-    size_front[0][1] = 2;
-    size_front[0][2] = 2;
-    size_front[1][0] = 2;
-    size_front[1][1] = 2;
-    size_front[1][2] = 2;
-    
-    unsigned int *size_rear = new unsigned int[3];
-    size_rear[0] = 3;
-    size_rear[1] = 2;
-    size_rear[2] = 1;
-    indiv a = indiv((unsigned int)2, (unsigned int)3, size_front, size_rear);
-    cout << a.size_frontL[0][0] << endl;
-    a.krnls[0][0].init(1, 2, 3);
-    a.krnls[0][0].setConst(1);
-    a.krnls[0][0].print();
-    //a.conns[0].print();
-    */
+	totalLayer layers;
+	layers.frontL = new channelLayer2[a.depthF];
+	for (int i = 0; i < a.depthF; i++){
+		layers.frontL[i] = new layer2[a.size_frontL[i][0]];
+		for (int j = 0; j < a.size_frontL[i][0]; j++){
+			layers.frontL[i][j].init(a.size_frontL[i][1], a.size_frontL[i][2]);
+		}
+	}
+	layers.rearL = new layer1[a.depthR + 1];
+	for (int i = 0; i < a.depthR + 1; i++){
+		layers.rearL[i].init(a.size_rearL[i]);
+	}
+
+	trainData b = txtIn();
+	a.calTotalScore(layers, b);
+	cout << a.score << endl;
 
     return 0;
 }

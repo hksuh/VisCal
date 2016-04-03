@@ -1,6 +1,6 @@
 #include "population.h"
 
-#define LEARN_NUM 1000
+#define LEARN_NUM 100
 #define PROGRESS_DIV 20
 
 population::population(){

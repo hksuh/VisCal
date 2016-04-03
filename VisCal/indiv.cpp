@@ -467,6 +467,7 @@ void indiv::calTotalScore(totalLayer& _layers, const trainData& _trainData){
 	for (int i = 0; i < _trainData.numOfData; i++){
 		calScore(_layers, _trainData, i);
 	}
+	score = score / _trainData.numOfData;
 };
 
 void indiv::rand(){
