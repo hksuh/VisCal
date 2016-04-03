@@ -446,7 +446,7 @@ void indiv::calScore(totalLayer& _layers, const trainData& _trainData, int dataN
 		krnls[0][j].getNext(_trainData.input[dataNum], _layers.frontL[0][j]);
 	}
 	for (int i = 0; i < depthF-1; i++){
-		for (int j = 0; j < size_frontL[i][0]; j++){ //channel
+		for (int j = 0; j < size_frontL[i+1][0]; j++){ //channel
 			krnls[i+1][j].getNext(_layers.frontL[i], _layers.frontL[i+1][j]);
 		}
 	}
