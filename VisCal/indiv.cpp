@@ -93,20 +93,16 @@ void indiv::preset(){
 	int i = 0;
 	for (int j = 0; j < size_frontL[i][0]; j++){
 		krnls[i][j].init(1, 2, 2);
-		krnls[i][j].maxPool = 2;
-		krnls[i][j].thr = 0.3;
 	}
 
 	i = 1;
 	for (int j = 0; j < size_frontL[i][0]; j++){
 		krnls[i][j].init(size_frontL[i-1][0], 4, 4);
 	}
-	krnls[i][0].thr = 5.1;
-	krnls[i][0].thr = 5.7;
 
 	i = 2;
 	for (int j = 0; j < size_frontL[i][0]; j++){
-		krnls[i][j].init(size_frontL[i - 1][0], 4, 4);
+		krnls[i][j].init(size_frontL[i - 1][0], 6, 6);
 	}
 
 	setConst(0);
@@ -117,63 +113,63 @@ void indiv::preset(){
 void indiv::presetRead(){
 	//readkrnl()
 
-	krnls[0][0].thr = 0.3;
+	krnls[0][0].thr = 8.*0.3;
 	krnls[0][0].maxPool = 2;
 	krnls[0][0][0][0][0] = 4.;
 	krnls[0][0][0][0][1] = 4.;
 	krnls[0][0][0][1][0] = -4.;
 	krnls[0][0][0][1][1] = -4.;
 
-	krnls[0][1].thr = 0.3;
+	krnls[0][1].thr = 8.*0.3;
 	krnls[0][1].maxPool = 2;
 	krnls[0][1][0][0][0] = -4.;
 	krnls[0][1][0][0][1] = -4.;
 	krnls[0][1][0][1][0] = 4.;
 	krnls[0][1][0][1][1] = 4.;
 
-	krnls[0][2].thr = 0.3;
+	krnls[0][2].thr = 8.*0.3;
 	krnls[0][2].maxPool = 2;
 	krnls[0][2][0][0][0] = -4.;
 	krnls[0][2][0][0][1] = 4.;
 	krnls[0][2][0][1][0] = -4.;
 	krnls[0][2][0][1][1] = 4.;
 
-	krnls[0][3].thr = 0.3;
+	krnls[0][3].thr = 8.*0.3;
 	krnls[0][3].maxPool = 2;
 	krnls[0][3][0][0][0] = 4.;
 	krnls[0][3][0][0][1] = -4.;
 	krnls[0][3][0][1][0] = 4.;
 	krnls[0][3][0][1][1] = -4.;
 
-	krnls[0][4].thr = 0.3;
+	krnls[0][4].thr = 8.*0.3;
 	krnls[0][4].maxPool = 2;
 	krnls[0][4][0][0][0] = 7.2;
 	krnls[0][4][0][0][1] = 0.;
 	krnls[0][4][0][1][0] = 0.;
 	krnls[0][4][0][1][1] = -7.2;
 
-	krnls[0][5].thr = 0.3;
+	krnls[0][5].thr = 8.*0.3;
 	krnls[0][5].maxPool = 2;
 	krnls[0][5][0][0][0] = -7.2;
 	krnls[0][5][0][0][1] = 0.;
 	krnls[0][5][0][1][0] = 0.;
 	krnls[0][5][0][1][1] = 7.2;
 
-	krnls[0][6].thr = 0.3;
+	krnls[0][6].thr = 8.*0.3;
 	krnls[0][6].maxPool = 2;
 	krnls[0][6][0][0][0] = 0.;
 	krnls[0][6][0][0][1] = -7.2;
 	krnls[0][6][0][1][0] = 7.2;
 	krnls[0][6][0][1][1] = 0.;
 
-	krnls[0][7].thr = 0.3;
+	krnls[0][7].thr = 8.*0.3;
 	krnls[0][7].maxPool = 2;
 	krnls[0][7][0][0][0] = 0.;
 	krnls[0][7][0][0][1] = 7.2;
 	krnls[0][7][0][1][0] = -7.2;
 	krnls[0][7][0][1][1] = 0.;
 
-	krnls[1][0].thr = 5.1;
+	krnls[1][0].thr = 8.*5.1;
 	krnls[1][0].maxPool = 0;
 	krnls[1][0][0][0][0] = 0.;
 	krnls[1][0][0][0][1] = 0.;
@@ -304,7 +300,7 @@ void indiv::presetRead(){
 	krnls[1][0][7][3][2] = 0.;
 	krnls[1][0][7][3][3] = 0.;
 
-	krnls[1][1].thr = 5.7;
+	krnls[1][1].thr = 8.*5.7;
 	krnls[1][1].maxPool = 0;
 	krnls[1][1][0][0][0] = -3.2;
 	krnls[1][1][0][0][1] = -3.2;
@@ -436,6 +432,27 @@ void indiv::presetRead(){
 	krnls[1][1][7][3][3] = 0.;
 
 
+	krnls[2][0].thr = 2.8;
+	krnls[2][0].maxPool = 7;
+	krnls[2][1].thr = 2.8;
+	krnls[2][1].maxPool = 7;
+	for (int i = 0; i < 6; i++){
+		for (int j = 0; j < 6; j++){
+			krnls[2][0][0][i][j] = 3.;
+			krnls[2][1][1][i][j] = 3.;
+		}
+	}
+
+	conns[0][0][0] = 10.;
+	conns[0][0][1] = -10.;
+	conns[0][1][0] = -10.;
+	conns[0][1][1] = 10.;
+	thsds[0][0] = 0;
+	thsds[0][0] = 0;
+	conns[1][0][1] = 10.;
+	thsds[1][0] = 5.;
+	conns[2][0][0] = 10.;
+	thsds[2][0] = 5.;
 }
 
 void indiv::calScore(totalLayer& _layers, const trainData& _trainData, int dataNum){

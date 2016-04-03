@@ -29,3 +29,5 @@ int prefix_kernel_testDrive();
 int indiv_testDrive();
 
 int pop_testDrive();
+
+int calcSpeed_testDrive();

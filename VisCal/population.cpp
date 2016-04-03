@@ -1,11 +1,11 @@
 #include "population.h"
 
-#define LEARN_NUM 10
+#define LEARN_NUM 1
 #define PROGRESS_DIV 1
 
 population::population(){
     /* initialize size information*/
-    num = 30;
+    num = 4;
 
 	init.preset();
 	init.presetRead();
@@ -42,10 +42,12 @@ population::population(){
     for (int i = 0; i < num; i++){
         //ref[i].init(depthF,depthR,size_frontL,size_rearL);
 		ref[i].preset();
-		ref[i].copy(init);
+		ref[i].presetRead();
+		//ref[i].copy(init);
         //trial[i].init(depthF, depthR, size_frontL, size_rearL);
 		trial[i].preset();
-		trial[i].copy(init);
+		trial[i].presetRead();
+		//trial[i].copy(init);
     }
     
     /* maximum score for progress checking */
@@ -54,7 +56,7 @@ population::population(){
 
 void population::learn(T foot_size) {
     for(int i = 0; i < num; i++) {
-        trial[i].mutate(foot_size);
+        trial[i].mutate(foot_size,2);
         trial[i].calTotalScore(layers, data);
         
         if(ref[i].score > trial[i].score) {
@@ -94,6 +96,27 @@ void population::learn(unsigned int n, T foot_size) {
     cout << endl;
 }
 
+void population::learnTemp(unsigned int n, T foot_size) {
+	int i = 0;
+
+	/* start with same individuals */
+	for (i = 0; i < num; i++) {
+		trial[i].copy(ref[i]);
+	}
+
+	for (i = 0; i < n; i++) {
+		learn(foot_size);
+		if (i % 30 == 0){
+			//print result temporary part
+			for (int qw = 0; qw < num; qw++){
+				ref[qw].calTotalScore(layers, data);
+				cout << "[" << qw << "] : " << ref[qw].score << endl;
+			}
+			//
+		}
+	}
+}
+
 int population::shell() {
     char command;
     char yes_no;
@@ -112,14 +135,15 @@ int population::shell() {
 
         cout << "VisCal>> ";
         
-        command = getchar();
+        cin>>command;
         switch(command) {
             case 'l':               // learning
                 cout << "number of mutation trial : ";
                 cin >> number;
                 cout << "size of mutation foot size : ";
                 cin >> foot_size;
-                learn(number, foot_size);
+                //learn(number, foot_size);
+				learnTemp(number, foot_size);
                 saved = false;
                 break;
             /*

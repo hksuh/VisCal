@@ -343,9 +343,25 @@ int indiv_testDrive() {
 	trainData b = txtIn();
 	clock_t time_b = clock();
 
-	a.calScore(layers, b, 0);
-	//layers.frontL[0][0].print();
-	cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
+	for (int i = 0; i < 10; i++){
+		a.calScore(layers, b, i);
+		b.expectedResult[i].print();
+		layers.frontL[2][0].print();
+		layers.frontL[2][1].print();
+		cout << "-----------" << endl;
+
+		layers.rearL[0].print();
+		cout << "-----------" << endl;
+		layers.rearL[1].print();
+		cout << "-----------" << endl;
+		layers.rearL[2].print();
+		cout << "-----------" << endl;
+		layers.rearL[3].print();
+		cout << "-----------" << endl;
+	}
+	//a.calScore(layers, b, 0);
+	//layers.frontL[1][1].print();
+	//cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
 	clock_t time_c = clock();
 	
 	for (int i = 0; i < 10; i++){
@@ -374,5 +390,66 @@ int pop_testDrive(){
 	a.data = txtIn();
 	a.init.krnls[1][0].print();
 	a.shell();
+	return 0;
+}
+
+
+int calcSpeed_testDrive(){
+
+	indiv a = indiv();
+	a.preset();
+	a.presetRead();
+	a.krnls[1][1].print();
+
+	totalLayer layers;
+	layers.frontL = new channelLayer2[a.depthF];
+	for (int i = 0; i < a.depthF; i++){
+		layers.frontL[i] = new layer2[a.size_frontL[i][0]];
+		for (int j = 0; j < a.size_frontL[i][0]; j++){
+			layers.frontL[i][j].init(a.size_frontL[i][1], a.size_frontL[i][2]);
+		}
+	}
+	layers.rearL = new layer1[a.depthR + 1];
+	for (int i = 0; i < a.depthR + 1; i++){
+		layers.rearL[i].init(a.size_rearL[i]);
+	}
+
+	clock_t time_a = clock();
+
+	trainData b = txtIn();
+	clock_t time_b = clock();
+
+	for (int i = 0; i < 10; i++){
+		a.calScore(layers, b, i);
+		b.expectedResult[i].print();
+		layers.frontL[2][0].print();
+		layers.frontL[2][1].print();
+		cout << "-----------" << endl;
+
+		layers.rearL[0].print();
+		cout << "-----------" << endl;
+		layers.rearL[1].print();
+		cout << "-----------" << endl;
+		layers.rearL[2].print();
+		cout << "-----------" << endl;
+		layers.rearL[3].print();
+		cout << "-----------" << endl;
+	}
+	//a.calScore(layers, b, 0);
+	//layers.frontL[1][1].print();
+	//cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
+	clock_t time_c = clock();
+
+	for (int i = 0; i < 10; i++){
+		a.calTotalScore(layers, b);
+		cout << a.score << endl;
+		a.mutate(0.1);
+	}
+
+	clock_t time_d = clock();
+
+	cout << "a to b: " << ((double)(time_b - time_a)) / CLOCKS_PER_SEC << endl;
+	cout << "b to c: " << ((double)(time_c - time_b)) / CLOCKS_PER_SEC << endl;
+	cout << "c to d: " << ((double)(time_d - time_c)) / CLOCKS_PER_SEC << endl;
 	return 0;
 }

@@ -13,7 +13,7 @@ totalLayer::~totalLayer() {
 
 void flatten(const channelLayer2& _input, layer1& _output) {
     int i;
-    for(i = 0; i < _input->size[0]; i++) {
+    for(i = 0; i < _output.size[0]; i++) {
         _output.elem[i] = _input[i][0][0];
     }
 }
@@ -140,7 +140,8 @@ T thsd::sigmoid(T value, T threshold){
 }
 void thsd::getNext(layer1& _target){
 	for (int i = 0; i < size[0]; i++){
-		_target[i]=sigmoid(_target[i], elem[i]);
+		//_target[i]=sigmoid(_target[i], elem[i]);
+		_target[i]=.5*(tanh(_target[i]- elem[i])+1.);
 	}
 }
 

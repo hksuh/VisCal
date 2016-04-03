@@ -9,6 +9,7 @@ class population{
     
     void learn(T);
     void learn(unsigned int, T);
+	void learnTemp(unsigned int, T);
     int shell();
     
     /* size infos */
