@@ -39,6 +39,7 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 	double iter2;
 
 	if (maxPool>1){
+		/*
 		for (i1 = 0; i1 < i1N; i1++){
 			for (j1 = 0; j1 < j1N; j1++){
 				iter = 0;
@@ -82,8 +83,8 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 
 				_target[i1][j1] = .5*(tanh(iter - thr) + 1.);
 			}
-		}
-/*		int i3, j3;
+		}*/
+		int i3, j3;
 		for (i1 = 0; i1 < i1N; i1++){
 			for (j1 = 0; j1 < j1N; j1++){
 				i3 = 0; j3 = 0;
@@ -114,7 +115,6 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 				_target[i1][j1] = .5*(tanh(iter)+1.);
 			}
 		}
-		*/
 	}
 	else{
 		for (i1 = 0; i1 < i1N; i1++){
