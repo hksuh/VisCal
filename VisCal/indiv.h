@@ -9,6 +9,7 @@ public:
 	double score;
 	void calTotalScore(totalLayer& _layers, const trainData& _trainData);
 	void calScore(totalLayer& _layers, const trainData& _trainData, int dataNum);
+	layer1& propagate(totalLayer& _layers, const channelLayer2& _inputData);
 
 	/*
 

@@ -399,8 +399,8 @@ int calcSpeed_testDrive(){
 	indiv a = indiv();
 	a.preset();
 	a.presetRead();
-	a.krnls[1][1].print();
 
+	//initialize layers
 	totalLayer layers;
 	layers.frontL = new channelLayer2[a.depthF];
 	for (int i = 0; i < a.depthF; i++){

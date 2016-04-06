@@ -457,6 +457,24 @@ void indiv::presetRead(){
 	thsds[2][0] = 5.;
 }
 
+layer1& indiv::propagate(totalLayer& _layers, const channelLayer2& _inputData){
+for (int j = 0; j < size_frontL[0][0]; j++){ //channel
+		krnls[0][j].getNext(_inputData, _layers.frontL[0][j]);
+	}
+	for (int i = 0; i < depthF - 1; i++){
+		for (int j = 0; j < size_frontL[i + 1][0]; j++){ //channel
+			krnls[i + 1][j].getNext(_layers.frontL[i], _layers.frontL[i + 1][j]);
+		}
+	}
+	flatten(_layers.frontL[depthF - 1], _layers.rearL[0]); //insert flatten function to make it mat1
+	//void getNext(const layer1& _input, layer1& _target);
+	for (int i = 0; i < depthR; i++){
+		conns[i].getNext(_layers.rearL[i], _layers.rearL[i + 1]);
+		thsds[i].getNext(_layers.rearL[i + 1]);
+	}
+	return _layers.rearL[depthR];
+};
+
 void indiv::calScore(totalLayer& _layers, const trainData& _trainData, int dataNum){
 	//_layers.frontL;
 	//_trainData.numOfData;
