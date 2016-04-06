@@ -453,3 +453,18 @@ int calcSpeed_testDrive(){
 	cout << "c to d: " << ((double)(time_d - time_c)) / CLOCKS_PER_SEC << endl;
 	return 0;
 }
+
+int read_testDrive(){
+	char * a=new char[100];
+	char * b = new char[100];
+
+	double iter;
+	ifstream c("test.txt");
+	cin >>iter;
+
+	krnl d(3, 3, 3);
+
+//	*a>>iter;
+	cout << iter << endl;
+	return 0;
+}
