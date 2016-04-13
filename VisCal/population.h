@@ -9,6 +9,8 @@ class population{
     
     void learn(T);
     void learn(unsigned int, T);
+	void learnTemp(unsigned int, T);
+    void print();
     int shell();
     
     /* size infos */
@@ -30,5 +32,5 @@ class population{
 	trainData data = txtIn();
     
     /* auxiliary info */
-    T max_score;
+    T best_score;
 };

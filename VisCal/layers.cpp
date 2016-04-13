@@ -13,7 +13,7 @@ totalLayer::~totalLayer() {
 
 void flatten(const channelLayer2& _input, layer1& _output) {
     int i;
-    for(i = 0; i < _input->size[0]; i++) {
+    for(i = 0; i < _output.size[0]; i++) {
         _output.elem[i] = _input[i][0][0];
     }
 }
@@ -36,8 +36,54 @@ void krnl::getNext(const channelLayer2& _input, layer2& _target){
 	i2N = size[1];
 	j2N = size[2];
 	double iter;
+	double iter2;
 
 	if (maxPool>1){
+		/*
+		for (i1 = 0; i1 < i1N; i1++){
+			for (j1 = 0; j1 < j1N; j1++){
+				iter = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							//cout << i1 << ";;;" << j1 << ";;;" << ch << ";;;" << i2 << ";;;" << j2 << endl;
+							iter += elem[ch][i2][j2] * _input[ch][2 * i1 + i2][2 * j1 + j2];
+						}
+					}
+				}
+				iter2 = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter2 += elem[ch][i2][j2] * _input[ch][2 * i1 + i2+1][2 * j1 + j2];
+						}
+					}
+				}
+				if (iter2>iter){ iter = iter2; }
+
+				iter2 = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter2 += elem[ch][i2][j2] * _input[ch][2 * i1 + i2 ][2 * j1 + j2 +1];
+						}
+					}
+				}
+				if (iter2>iter){ iter = iter2; }
+
+				iter2 = 0;
+				for (ch = 0; ch < chN; ch++){
+					for (i2 = 0; i2 < i2N; i2++){
+						for (j2 = 0; j2 < j2N; j2++){
+							iter2 += elem[ch][i2][j2] * _input[ch][2 * i1 + i2 + 1][2 * j1 + j2+1];
+						}
+					}
+				}
+				if (iter2>iter){ iter = iter2; }
+
+				_target[i1][j1] = .5*(tanh(iter - thr) + 1.);
+			}
+		}*/
 		int i3, j3;
 		for (i1 = 0; i1 < i1N; i1++){
 			for (j1 = 0; j1 < j1N; j1++){
@@ -94,7 +140,8 @@ T thsd::sigmoid(T value, T threshold){
 }
 void thsd::getNext(layer1& _target){
 	for (int i = 0; i < size[0]; i++){
-		_target[i]=sigmoid(_target[i], elem[i]);
+		//_target[i]=sigmoid(_target[i], elem[i]);
+		_target[i]=.5*(tanh(_target[i]- elem[i])+1.);
 	}
 }
 

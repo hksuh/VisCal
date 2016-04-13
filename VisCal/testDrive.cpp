@@ -322,33 +322,59 @@ int indiv_testDrive() {
 
 	indiv a = indiv();
 	a.preset();
+	a.presetRead();
 	a.krnls[1][1].print();
 
-	/* Written by Taewook
-    //unsigned int size_front[2][2] = { {2, 2}, {1, 1} };
-    
-    unsigned int **size_front = new unsigned int*[2];
-    size_front[0] = new unsigned int[3];
-    size_front[1] = new unsigned int[3];
-    size_front[0][0] = 2;
-    size_front[0][1] = 2;
-    size_front[0][2] = 2;
-    size_front[1][0] = 2;
-    size_front[1][1] = 2;
-    size_front[1][2] = 2;
-    
-    unsigned int *size_rear = new unsigned int[3];
-    size_rear[0] = 3;
-    size_rear[1] = 2;
-    size_rear[2] = 1;
-    indiv a = indiv((unsigned int)2, (unsigned int)3, size_front, size_rear);
-    cout << a.size_frontL[0][0] << endl;
-    a.krnls[0][0].init(1, 2, 3);
-    a.krnls[0][0].setConst(1);
-    a.krnls[0][0].print();
-    //a.conns[0].print();
-    */
+	totalLayer layers;
+	layers.frontL = new channelLayer2[a.depthF];
+	for (int i = 0; i < a.depthF; i++){
+		layers.frontL[i] = new layer2[a.size_frontL[i][0]];
+		for (int j = 0; j < a.size_frontL[i][0]; j++){
+			layers.frontL[i][j].init(a.size_frontL[i][1], a.size_frontL[i][2]);
+		}
+	}
+	layers.rearL = new layer1[a.depthR + 1];
+	for (int i = 0; i < a.depthR + 1; i++){
+		layers.rearL[i].init(a.size_rearL[i]);
+	}
 
+	clock_t time_a = clock();
+
+	trainData b = txtIn();
+	clock_t time_b = clock();
+
+	for (int i = 0; i < 10; i++){
+		a.calScore(layers, b, i);
+		b.expectedResult[i].print();
+		layers.frontL[2][0].print();
+		layers.frontL[2][1].print();
+		cout << "-----------" << endl;
+
+		layers.rearL[0].print();
+		cout << "-----------" << endl;
+		layers.rearL[1].print();
+		cout << "-----------" << endl;
+		layers.rearL[2].print();
+		cout << "-----------" << endl;
+		layers.rearL[3].print();
+		cout << "-----------" << endl;
+	}
+	a.calScore(layers, b, 0);
+	layers.frontL[1][1].print();
+	cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
+	clock_t time_c = clock();
+	
+	for (int i = 0; i < 10; i++){
+		a.calTotalScore(layers, b);
+		cout << a.score << endl;
+		a.mutate(0.1);
+	}
+	
+	clock_t time_d = clock();
+
+	cout << "a to b: " << ((double)(time_b - time_a)) / CLOCKS_PER_SEC << endl;
+	cout << "b to c: " << ((double)(time_c - time_b)) / CLOCKS_PER_SEC << endl;
+	cout << "c to d: " << ((double)(time_d - time_c)) / CLOCKS_PER_SEC << endl;
     return 0;
 }
 
@@ -362,9 +388,11 @@ int pop_testDrive(){
 	c.print();
 	population a = population();
 	a.data = txtIn();
+	a.init.krnls[1][0].print();
 	a.shell();
 	return 0;
 }
+<<<<<<< HEAD
 int readkrnl_testDrive(){
 
 	using namespace std;
@@ -376,5 +404,81 @@ int readkrnl_testDrive(){
 	for (int i = 0; i < 1; i++){
 		a.krnls[1][i].print();
 	}
+=======
+
+
+int calcSpeed_testDrive(){
+
+	indiv a = indiv();
+	a.preset();
+	a.presetRead();
+	a.krnls[1][1].print();
+
+	totalLayer layers;
+	layers.frontL = new channelLayer2[a.depthF];
+	for (int i = 0; i < a.depthF; i++){
+		layers.frontL[i] = new layer2[a.size_frontL[i][0]];
+		for (int j = 0; j < a.size_frontL[i][0]; j++){
+			layers.frontL[i][j].init(a.size_frontL[i][1], a.size_frontL[i][2]);
+		}
+	}
+	layers.rearL = new layer1[a.depthR + 1];
+	for (int i = 0; i < a.depthR + 1; i++){
+		layers.rearL[i].init(a.size_rearL[i]);
+	}
+
+	clock_t time_a = clock();
+
+	trainData b = txtIn();
+	clock_t time_b = clock();
+
+	for (int i = 0; i < 10; i++){
+		a.calScore(layers, b, i);
+		b.expectedResult[i].print();
+		layers.frontL[2][0].print();
+		layers.frontL[2][1].print();
+		cout << "-----------" << endl;
+
+		layers.rearL[0].print();
+		cout << "-----------" << endl;
+		layers.rearL[1].print();
+		cout << "-----------" << endl;
+		layers.rearL[2].print();
+		cout << "-----------" << endl;
+		layers.rearL[3].print();
+		cout << "-----------" << endl;
+	}
+	//a.calScore(layers, b, 0);
+	//layers.frontL[1][1].print();
+	//cout << "[6][8] should be one" << layers.frontL[1][1][6][8] << endl;
+	clock_t time_c = clock();
+
+	for (int i = 0; i < 10; i++){
+		a.calTotalScore(layers, b);
+		cout << a.score << endl;
+		a.mutate(0.1);
+	}
+
+	clock_t time_d = clock();
+
+	cout << "a to b: " << ((double)(time_b - time_a)) / CLOCKS_PER_SEC << endl;
+	cout << "b to c: " << ((double)(time_c - time_b)) / CLOCKS_PER_SEC << endl;
+	cout << "c to d: " << ((double)(time_d - time_c)) / CLOCKS_PER_SEC << endl;
+	return 0;
+}
+
+int read_testDrive(){
+	char * a=new char[100];
+	char * b = new char[100];
+
+	double iter;
+	ifstream c("test.txt");
+	cin >>iter;
+
+	krnl d(3, 3, 3);
+
+//	*a>>iter;
+	cout << iter << endl;
+>>>>>>> 6f06a9a794510e88021e66b255ea8e34f1d8ccd5
 	return 0;
 }
