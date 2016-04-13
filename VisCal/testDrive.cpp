@@ -1,4 +1,5 @@
 #include "testDrive.h"
+using namespace std;
 
 int trainDataTest(){
 	trainData a=trainData(300, 32, 32, 1);
@@ -392,7 +393,6 @@ int pop_testDrive(){
 	a.shell();
 	return 0;
 }
-<<<<<<< HEAD
 int readkrnl_testDrive(){
 
 	using namespace std;
@@ -404,8 +404,7 @@ int readkrnl_testDrive(){
 	for (int i = 0; i < 1; i++){
 		a.krnls[1][i].print();
 	}
-=======
-
+}
 
 int calcSpeed_testDrive(){
 
@@ -479,6 +478,5 @@ int read_testDrive(){
 
 //	*a>>iter;
 	cout << iter << endl;
->>>>>>> 6f06a9a794510e88021e66b255ea8e34f1d8ccd5
 	return 0;
 }
