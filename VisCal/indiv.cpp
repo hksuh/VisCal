@@ -1,4 +1,10 @@
 #include "indiv.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <stdlib.h>
+
 
 indiv::indiv(){
 	size_frontL = nullptr;
@@ -117,6 +123,65 @@ void indiv::preset(){
 void indiv::presetRead(){
 	//readkrnl()
 }
+
+void indiv::removeParenth(string& str){
+	for (int i = 0; i < str.length();){
+		if (str[i] == '{' || str[i] == '}'){
+			str.erase(i, 1);
+		}
+		else{
+			++i;
+		}
+	}
+}
+
+void indiv::readkrnl(){
+	//using namespace std;
+	ifstream myfile;
+	string fileLine;
+	myfile.open("PrefixKrnls1.txt");
+	//getline(myfile, fileLine);
+	
+	int num = 0;
+	int depth = 0;
+	int channel = 0;
+
+	while (getline(myfile, fileLine)) // To get you all the lines.
+	{
+		if (fileLine[0] == '{' && fileLine[1] == '{' && fileLine[2] == '{'){
+			getline(myfile, fileLine); // Saves the line in fileLine.
+			removeParenth(fileLine);
+
+			char *cstr = new char[fileLine.length() + 1];
+			strcpy_s(cstr, fileLine.length()+1,fileLine.c_str());
+			char *next_token1 = NULL;
+			char *splitLine = strtok_s(cstr, ",", &next_token1);
+			
+			if (num<8){
+				for (int i = 0; i < 2; i++){
+					for (int j = 0; j < 2; j++){
+						krnls[depth][channel+num][0][i][j] = atof(splitLine);
+						splitLine = strtok_s(NULL, ",", &next_token1);
+					}
+				}
+			}
+			else{
+				for (int k = 0; k < 8; k++){
+					for (int i = 0; i < 4; i++){
+						for (int j = 0; j < 4; j++){
+							krnls[depth + num / 8][channel + (num - 8)][k][i][j] = atof(splitLine);
+							splitLine = strtok_s(NULL, ",", &next_token1);
+						}
+					}
+				}
+			}
+			num++;
+			delete[] cstr;
+		}
+	}
+	myfile.close();
+}
+
 
 void indiv::calScore(totalLayer& _layers, const trainData& _trainData, int dataNum){
 	//_layers.frontL;

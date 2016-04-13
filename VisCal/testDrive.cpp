@@ -365,3 +365,16 @@ int pop_testDrive(){
 	a.shell();
 	return 0;
 }
+int readkrnl_testDrive(){
+
+	using namespace std;
+	indiv a = indiv();
+	a.readkrnl();
+	for (int i = 0; i < 8; i++){
+		a.krnls[0][i].print();
+	}
+	for (int i = 0; i < 1; i++){
+		a.krnls[1][i].print();
+	}
+	return 0;
+}
