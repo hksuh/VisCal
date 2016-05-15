@@ -404,6 +404,8 @@ int readkrnl_testDrive(){
 	for (int i = 0; i < 1; i++){
 		a.krnls[1][i].print();
 	}
+
+	return 0;
 }
 
 int calcSpeed_testDrive(){
@@ -478,5 +480,9 @@ int read_testDrive(){
 
 //	*a>>iter;
 	cout << iter << endl;
+	return 0;
+}
+
+int onpencv_testDrive(){
 	return 0;
 }

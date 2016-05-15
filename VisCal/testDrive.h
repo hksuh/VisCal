@@ -4,6 +4,7 @@
 #include "matrix.h"
 #include "layers.h"
 #include "population.h"
+#include "opencv.h"
 #pragma once
 
 int trainDataTest();
@@ -36,3 +37,5 @@ int readkrnl_testDrive();
 int calcSpeed_testDrive();
 
 int read_testDrive();
+
+int onpencv_testDrive();

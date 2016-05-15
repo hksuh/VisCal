@@ -5,6 +5,7 @@
 #include "layers.h"
 #include <thread>
 #include "testDrive.h"
+#include "opencv.h"
 
 using namespace std;
 
@@ -29,12 +30,13 @@ int multiThread(){
 int main(){
     srand((unsigned int)time(nullptr));
 
+	return onpencv_testDrive();
 	//return mutation_testDrive();
 	//return prefix_kernel_testDrive();
     //return copy_testDrive();
     //return getNext_testDrive();
     //return indiv_testDrive();
 	//return pop_testDrive();
-	return readkrnl_testDrive();
+	//return readkrnl_testDrive();
 	//return 0;
 }
