@@ -484,5 +484,5 @@ int read_testDrive(){
 }
 
 int onpencv_testDrive(){
-	return 0;
+	return test1();
 }
