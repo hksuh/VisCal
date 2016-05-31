@@ -1,0 +1,297 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9546,        288]
+NotebookOptionsPosition[      8531,        248]
+NotebookOutlinePosition[      9046,        270]
+CellTagsIndexPosition[      8962,        265]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "dir", "=", 
+   "\"\<C:\\\\Users\\\\JP\\\\Documents\\\\VisCal\\\\MiddleImage\\\\\>\""}], 
+  ";", 
+  RowBox[{"num", "=", "600"}], ";", 
+  RowBox[{"imgsize", "=", "32"}], ";"}]], "Input",
+ CellChangeTimes->{{3.673658042470929*^9, 3.6736580513912663`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"count", "=", "0"}], ";", 
+  RowBox[{"error", "=", "0"}], ";"}]], "Input",
+ CellChangeTimes->{{3.6736583952241597`*^9, 3.6736584002867575`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"ind", "=", "581"}], ",", 
+   RowBox[{"ind", "<", "599"}], ",", 
+   RowBox[{"ind", "++"}], ",", 
+   RowBox[{
+    RowBox[{"image1", "=", 
+     RowBox[{"Max", "[", 
+      RowBox[{"ImageData", "[", 
+       RowBox[{"Import", "[", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"dir", ",", 
+          RowBox[{"ToString", "[", 
+           RowBox[{
+            RowBox[{"2", "ind"}], "-", "1"}], "]"}], ",", "\"\<.png\>\""}], 
+         "]"}], "]"}], "]"}], "]"}]}], ";", 
+    RowBox[{"image2", "=", 
+     RowBox[{"Max", "[", 
+      RowBox[{"ImageData", "[", 
+       RowBox[{"Import", "[", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"dir", ",", 
+          RowBox[{"ToString", "[", 
+           RowBox[{"2", "ind"}], "]"}], ",", "\"\<.png\>\""}], "]"}], "]"}], 
+       "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"count", "++"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"image1", ">", "image2"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Mod", "[", 
+          RowBox[{"ind", ",", "2"}], "]"}], "\[Equal]", "1"}], ",", 
+        RowBox[{"error", "++"}]}], "]"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Mod", "[", 
+          RowBox[{"ind", ",", "2"}], "]"}], "==", "0"}], ",", 
+        RowBox[{"error", "++"}]}], "]"}]}], "]"}]}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.673658078865783*^9, 3.673658285013583*^9}, {
+  3.673658355474925*^9, 3.673658490003316*^9}, {3.6736585268294773`*^9, 
+  3.673658534686062*^9}, {3.6736587534583244`*^9, 3.6736587734955597`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ind", " ", "=", "580"}], ";", 
+  RowBox[{"image1", "=", 
+   RowBox[{"Max", "[", 
+    RowBox[{"ImageData", "[", 
+     RowBox[{"Import", "[", 
+      RowBox[{"StringJoin", "[", 
+       RowBox[{"dir", ",", 
+        RowBox[{"ToString", "[", 
+         RowBox[{
+          RowBox[{"2", "ind"}], "-", "1"}], "]"}], ",", "\"\<.png\>\""}], 
+       "]"}], "]"}], "]"}], "]"}]}], ";", 
+  RowBox[{"image2", "=", 
+   RowBox[{"Max", "[", 
+    RowBox[{"ImageData", "[", 
+     RowBox[{"Import", "[", 
+      RowBox[{"StringJoin", "[", 
+       RowBox[{"dir", ",", 
+        RowBox[{"ToString", "[", 
+         RowBox[{"2", "ind"}], "]"}], ",", "\"\<.png\>\""}], "]"}], "]"}], 
+     "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"count", "++"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"image1", ">", "image2"}], ",", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Mod", "[", 
+       RowBox[{"ind", ",", "2"}], "]"}], "\[Equal]", "1"}], ",", 
+     RowBox[{"error", "++"}]}], "]"}], ",", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Mod", "[", 
+       RowBox[{"ind", ",", "2"}], "]"}], "==", "0"}], ",", 
+     RowBox[{"error", "++"}]}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6736587981854706`*^9, 3.673658804507963*^9}}],
+
+Cell[BoxData["30"], "Output",
+ CellChangeTimes->{3.6736588053975954`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"count", "-", 
+    RowBox[{"1.", "error"}]}], ")"}], "/", "count"}]], "Input",
+ CellChangeTimes->{{3.673658505296198*^9, 3.6736585061127787`*^9}, {
+  3.673658594681218*^9, 3.673658623432644*^9}}],
+
+Cell[BoxData["0.9492635024549919`"], "Output",
+ CellChangeTimes->{{3.6736585064029646`*^9, 3.6736585309484043`*^9}, {
+   3.673658592597742*^9, 3.6736586238239202`*^9}, 3.673658782202744*^9, 
+   3.6736588146171474`*^9}]
+}, Open  ]],
+
+Cell[BoxData["image1"], "Input",
+ CellChangeTimes->{{3.6736582090066032`*^9, 3.6736582430427666`*^9}, {
+  3.6736582801421223`*^9, 3.6736583432192144`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Max", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.5", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", 
+      "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], 
+     "}"}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.67365834528168*^9, 3.673658352608884*^9}}],
+
+Cell[BoxData["0.5`"], "Output",
+ CellChangeTimes->{3.673658352874071*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "For"}]], "Input",
+ CellChangeTimes->{{3.673658138163113*^9, 3.6736581387815704`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox["\<\"\\!\\(\\*RowBox[{\\\"For\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"start\\\", \\\"TI\\\"], \\\",\\\", \
+StyleBox[\\\"test\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"incr\\\", \
+\\\"TI\\\"], \\\",\\\", StyleBox[\\\"body\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) \
+executes \\!\\(\\*StyleBox[\\\"start\\\", \\\"TI\\\"]\\), then repeatedly \
+evaluates \\!\\(\\*StyleBox[\\\"body\\\", \\\"TI\\\"]\\) and \
+\\!\\(\\*StyleBox[\\\"incr\\\", \\\"TI\\\"]\\) until \
+\\!\\(\\*StyleBox[\\\"test\\\", \\\"TI\\\"]\\) fails to give True. \"\>", 
+   "MSG"], "\[NonBreakingSpace]", 
+  ButtonBox[
+   StyleBox["\[RightSkeleton]", "SR"],
+   Active->True,
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/For"]}]], "Print", "PrintUsage",
+ CellChangeTimes->{3.6736581392829056`*^9},
+ CellTags->"Info3673690539-3848405"]
+}, Open  ]]
+},
+WindowSize->{707, 504},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "Info3673690539-3848405"->{
+  Cell[7688, 228, 827, 17, 42, "Print",
+   CellTags->"Info3673690539-3848405"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"Info3673690539-3848405", 8858, 259}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 290, 8, 52, "Input"],
+Cell[850, 30, 178, 4, 31, "Input"],
+Cell[1031, 36, 1693, 45, 172, "Input"],
+Cell[CellGroupData[{
+Cell[2749, 85, 1338, 39, 152, "Input"],
+Cell[4090, 126, 73, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4200, 132, 246, 6, 31, "Input"],
+Cell[4449, 140, 218, 3, 63, "Output"]
+}, Open  ]],
+Cell[4682, 146, 155, 2, 31, "Input"],
+Cell[CellGroupData[{
+Cell[4862, 152, 2596, 64, 252, InheritFromParent],
+Cell[7461, 218, 73, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7571, 224, 114, 2, 31, "Input"],
+Cell[7688, 228, 827, 17, 42, "Print",
+ CellTags->"Info3673690539-3848405"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
